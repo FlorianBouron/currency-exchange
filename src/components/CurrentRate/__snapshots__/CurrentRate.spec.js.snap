@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrentRate component expects component to never be changed 1`] = `
+<div
+  className="current-rate-container"
+>
+  <[object Object]
+    className="current-rate-icon"
+  />
+  1zl
+   = 
+  0,231€
+</div>
+`;

@@ -1,0 +1,13 @@
+@function px2rem($px) {
+  // Assure than the px unit is removed
+  @if unit($px) == "px" {
+    $px: $px/1px;
+  }
+
+  // Throw an error if the previous opperation failed
+  @if not unitless($px) {
+    @warn "Please try again with a number or a px value. Your input was: " + $px;
+  }
+
+  @return $px/16 * 1rem;
+}

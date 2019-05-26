@@ -1,0 +1,13 @@
+@import "../../constants/utils.scss";
+
+.current-rate-container {
+  padding: 0 px2rem(5px);
+  border: solid px2rem(2px) #cfd8dc;
+  border-radius: px2rem(20px);
+  display: inline-flex;
+  align-items: center;
+}
+
+.current-rate-icon {
+  margin-right: px2rem(10px);
+}
