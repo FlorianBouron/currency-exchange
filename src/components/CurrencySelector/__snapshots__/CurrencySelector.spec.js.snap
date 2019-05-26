@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrencySelector component expects component to never be changed 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(Button))
+    aria-haspopup="true"
+    onClick={[Function]}
+    size="large"
+  >
+    GBP
+    <[object Object] />
+  </WithStyles(ForwardRef(Button))>
+  <WithStyles(ForwardRef(Menu))
+    anchorEl={null}
+    id="currency-selector"
+    onClose={[Function]}
+    open={false}
+  >
+    <WithStyles(ForwardRef(MenuItem))
+      key="wallet-id-0"
+      onClick={[Function]}
+    >
+      GBP
+    </WithStyles(ForwardRef(MenuItem))>
+    <WithStyles(ForwardRef(MenuItem))
+      key="wallet-id-1"
+      onClick={[Function]}
+    >
+      EUR
+    </WithStyles(ForwardRef(MenuItem))>
+    <WithStyles(ForwardRef(MenuItem))
+      key="wallet-id-2"
+      onClick={[Function]}
+    >
+      USD
+    </WithStyles(ForwardRef(MenuItem))>
+  </WithStyles(ForwardRef(Menu))>
+</Fragment>
+`;
+
+exports[`CurrencySelector component expects component to never be changed with no wallets 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(Button))
+    aria-haspopup="true"
+    onClick={[Function]}
+    size="large"
+  >
+    GBP
+    <[object Object] />
+  </WithStyles(ForwardRef(Button))>
+  <WithStyles(ForwardRef(Menu))
+    anchorEl={null}
+    id="currency-selector"
+    onClose={[Function]}
+    open={false}
+  />
+</Fragment>
+`;
