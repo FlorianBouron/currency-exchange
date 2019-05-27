@@ -1,11 +1,14 @@
 @import "../../constants/utils.scss";
+@import "../../constants/colors.scss";
 
 .current-rate-container {
   padding: 0 px2rem(5px);
-  border: solid px2rem(2px) #cfd8dc;
+  border: solid px2rem(2px) $primary-gray;
   border-radius: px2rem(20px);
   display: inline-flex;
   align-items: center;
+  color: $primary-blue;
+  background-color: $white;
 
   .current-rate-icon {
     margin-right: px2rem(10px);

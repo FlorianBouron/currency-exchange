@@ -2,7 +2,7 @@
 
 exports[`CurrencyContainer component expects component to never be changed 1`] = `
 <div
-  className="currency-container"
+  className="currency-container "
 >
   <div
     className="currency-input-selector"
@@ -63,7 +63,7 @@ exports[`CurrencyContainer component expects component to never be changed 1`] =
 
 exports[`CurrencyContainer component has isReadOnly props 1`] = `
 <div
-  className="currency-container"
+  className="currency-container "
 >
   <div
     className="currency-input-selector"
@@ -124,7 +124,7 @@ exports[`CurrencyContainer component has isReadOnly props 1`] = `
 
 exports[`CurrencyContainer component has no wallets 1`] = `
 <div
-  className="currency-container"
+  className="currency-container "
 >
   <div
     className="currency-input-selector"

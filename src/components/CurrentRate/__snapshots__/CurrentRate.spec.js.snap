@@ -2,7 +2,7 @@
 
 exports[`CurrentRate component expects component to never be changed 1`] = `
 <div
-  className="current-rate-container"
+  className="current-rate-container "
 >
   <[object Object]
     className="current-rate-icon"

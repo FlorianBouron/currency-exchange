@@ -1,3 +1,6 @@
+@import "../../constants/utils.scss";
+@import "../../constants/colors.scss";
+
 .app-container {
   height: 100vh;
   display: flex;
@@ -5,11 +8,29 @@
   align-items: center;
 
   .app-paper {
-    width: 400px;
-    padding: 20px;
+    width: px2rem(400px);
+    padding: px2rem(20px);
   }
 
   .app-title {
     text-align: center;
+  }
+
+  .app-current-rate {
+    position: absolute;
+    top: calc(50% - #{px2rem(14px)});
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .app-currency-container-read-only {
+    margin: 0 px2rem(-20px) px2rem(20px) px2rem(-20px);
+    padding: px2rem(30px) px2rem(40px);
+    background-color: $primary-gray;
+  }
+
+  .app-footer {
+    display: flex;
+    justify-content: center;
   }
 }

@@ -34,11 +34,22 @@ const App = () => {
           Exchange
         </Typography>
         <CurrencyContainer wallets={wallets} currentCurrency="GBP" />
-        <CurrencyContainer wallets={wallets} currentCurrency="EUR" isReadOnly />
-        <CurrentRate rateFrom="1zl" rateTo="0,231€" />
-        <Button variant="contained" color="secondary">
-          Exchange
-        </Button>
+        <CurrentRate
+          rateFrom="1zl"
+          rateTo="0,231€"
+          className={styles["app-current-rate"]}
+        />
+        <CurrencyContainer
+          wallets={wallets}
+          currentCurrency="EUR"
+          isReadOnly
+          className={styles["app-currency-container-read-only"]}
+        />
+        <div className={styles["app-footer"]}>
+          <Button variant="contained" color="secondary">
+            Exchange
+          </Button>
+        </div>
       </Paper>
     </div>
   );

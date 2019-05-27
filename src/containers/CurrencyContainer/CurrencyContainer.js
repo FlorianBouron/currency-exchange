@@ -40,7 +40,7 @@ class CurrencyContainer extends React.PureComponent {
       inputValue: value
     };
 
-    if (value === "-") {
+    if (value === this.signInput) {
       state.inputValue = "";
     }
 
@@ -66,13 +66,21 @@ class CurrencyContainer extends React.PureComponent {
   };
 
   render() {
-    const { wallets } = this.props;
+    const { wallets, className } = this.props;
     const { amount, inputValue, symbol, currencyName, error } = this.state;
-    const displayInputValue =
-      inputValue > 0 ? `${this.signInput}${inputValue}` : inputValue;
+    let displayInputValue = inputValue;
+    if (
+      this.signInput === "+" &&
+      inputValue.toString().indexOf("+") === -1 &&
+      inputValue.toString().length
+    ) {
+      displayInputValue = `${this.signInput}${inputValue}`;
+    } else if (this.signInput === "-" && inputValue > 0) {
+      displayInputValue = `${this.signInput}${inputValue}`;
+    }
 
     return (
-      <div className={styles["currency-container"]}>
+      <div className={[styles["currency-container"], className].join(" ")}>
         <div className={styles["currency-input-selector"]}>
           <CurrencySelector
             currentCurrency={currencyName}
@@ -112,12 +120,14 @@ CurrencyContainer.propTypes = {
     })
   ),
   currentCurrency: PropTypes.string.isRequired,
-  isReadOnly: PropTypes.bool
+  isReadOnly: PropTypes.bool,
+  className: PropTypes.string
 };
 
 CurrencyContainer.defaultProps = {
   wallets: [],
-  isReadOnly: false
+  isReadOnly: false,
+  className: null
 };
 
 export default CurrencyContainer;
