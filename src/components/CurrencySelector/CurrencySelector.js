@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown";
+import styles from "./CurrencySelector.module.scss";
 
 class CurrencySelector extends React.PureComponent {
   constructor(props) {
@@ -46,6 +47,9 @@ class CurrencySelector extends React.PureComponent {
           aria-owns={anchorEl ? "currency-selector" : undefined}
           aria-haspopup="true"
           onClick={this.handleClickButton}
+          classes={{
+            label: styles["currency-selector-button"]
+          }}
         >
           {currentCurrency}
           <KeyboardArrowDown />

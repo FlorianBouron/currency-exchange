@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrencyContainer component expects component to never be changed 1`] = `
+<div
+  className="currency-container"
+>
+  <div
+    className="currency-input-selector"
+  >
+    <CurrencySelector
+      currentCurrency="GBP"
+      onChange={[Function]}
+      wallets={
+        Array [
+          Object {
+            "amount": 200,
+            "id": "wallet-id-0",
+            "name": "GBP",
+            "symbol": "£",
+          },
+          Object {
+            "amount": 85,
+            "id": "wallet-id-1",
+            "name": "EUR",
+            "symbol": "€",
+          },
+          Object {
+            "amount": 1000,
+            "id": "wallet-id-2",
+            "name": "USD",
+            "symbol": "$",
+          },
+        ]
+      }
+    />
+    <WithStyles(ForwardRef(TextField))
+      InputLabelProps={
+        Object {
+          "shrink": true,
+        }
+      }
+      className="currency-text-field"
+      margin="normal"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="0"
+      type="text"
+      value="-200"
+    />
+  </div>
+  <div
+    className="currency-info"
+  >
+    <div
+      className={null}
+    >
+      Balance: 
+      £200
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CurrencyContainer component has isReadOnly props 1`] = `
+<div
+  className="currency-container"
+>
+  <div
+    className="currency-input-selector"
+  >
+    <CurrencySelector
+      currentCurrency="GBP"
+      onChange={[Function]}
+      wallets={
+        Array [
+          Object {
+            "amount": 200,
+            "id": "wallet-id-0",
+            "name": "GBP",
+            "symbol": "£",
+          },
+          Object {
+            "amount": 85,
+            "id": "wallet-id-1",
+            "name": "EUR",
+            "symbol": "€",
+          },
+          Object {
+            "amount": 1000,
+            "id": "wallet-id-2",
+            "name": "USD",
+            "symbol": "$",
+          },
+        ]
+      }
+    />
+    <WithStyles(ForwardRef(TextField))
+      InputLabelProps={
+        Object {
+          "shrink": true,
+        }
+      }
+      className="currency-text-field"
+      margin="normal"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="0"
+      type="text"
+      value="+200"
+    />
+  </div>
+  <div
+    className="currency-info"
+  >
+    <div
+      className={null}
+    >
+      Balance: 
+      £200
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CurrencyContainer component has no wallets 1`] = `
+<div
+  className="currency-container"
+>
+  <div
+    className="currency-input-selector"
+  >
+    <CurrencySelector
+      currentCurrency=""
+      onChange={[Function]}
+      wallets={Array []}
+    />
+    <WithStyles(ForwardRef(TextField))
+      InputLabelProps={
+        Object {
+          "shrink": true,
+        }
+      }
+      className="currency-text-field"
+      margin="normal"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="0"
+      type="text"
+      value={0}
+    />
+  </div>
+  <div
+    className="currency-info"
+  >
+    <div
+      className={null}
+    >
+      Balance: 
+      0
+    </div>
+  </div>
+</div>
+`;

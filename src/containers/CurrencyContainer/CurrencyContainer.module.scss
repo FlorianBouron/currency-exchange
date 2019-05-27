@@ -1,0 +1,26 @@
+@import "../../constants/utils.scss";
+@import "../../constants/colors.scss";
+
+.currency-container {
+  .currency-input-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .currency-text-field {
+      input {
+        text-align: right;
+      }
+    }
+  }
+  .currency-info {
+    margin: px2rem(12px) 0;
+    padding-left: px2rem(25px);
+    display: flex;
+    justify-content: space-between;
+    color: $secondary-gray;
+    .currency-balance-error {
+      color: $primary-pink;
+    }
+  }
+}
