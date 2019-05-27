@@ -16,6 +16,13 @@
     text-align: center;
   }
 
+  .app-switch-button {
+    position: absolute;
+    top: calc(50% - #{px2rem(14px)});
+    transform: translate(-50%, -50%);
+    margin-left: 20px;
+  }
+
   .app-current-rate {
     position: absolute;
     top: calc(50% - #{px2rem(14px)});

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SwitchButton component expects component to never be changed 1`] = `
+<WithStyles(ForwardRef(Fab))
+  aria-label="Switch"
+  className="switch-button-container "
+  onClick={[Function]}
+  size="small"
+>
+  <[object Object]
+    className="switch-icon"
+  />
+</WithStyles(ForwardRef(Fab))>
+`;

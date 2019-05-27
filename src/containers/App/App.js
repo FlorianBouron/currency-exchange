@@ -3,6 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import CurrentRate from "../../components/CurrentRate";
+import SwitchButton from "../../components/SwitchButton";
 import CurrencyContainer from "../CurrencyContainer";
 import styles from "./App.module.scss";
 
@@ -34,6 +35,10 @@ const App = () => {
           Exchange
         </Typography>
         <CurrencyContainer wallets={wallets} currentCurrency="GBP" />
+        <SwitchButton
+          className={styles["app-switch-button"]}
+          onClick={() => {}}
+        />
         <CurrentRate
           rateFrom="1zl"
           rateTo="0,231€"

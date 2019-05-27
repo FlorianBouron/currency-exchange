@@ -1,0 +1,9 @@
+@import "../../constants/colors.scss";
+
+.switch-button-container {
+  background-color: $white !important;
+  color: $primary-blue !important;
+  .switch-icon {
+    transform: rotate(90deg);
+  }
+}
