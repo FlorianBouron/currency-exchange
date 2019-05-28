@@ -9,9 +9,7 @@ import styles from "./CurrencySelector.module.scss";
 class CurrencySelector extends React.PureComponent {
   constructor(props) {
     super(props);
-    const { currentCurrency } = props;
     this.state = {
-      currentCurrency,
       anchorEl: null
     };
   }
@@ -24,7 +22,6 @@ class CurrencySelector extends React.PureComponent {
     const { onChange } = this.props;
     this.setState(
       {
-        currentCurrency: name,
         anchorEl: null
       },
       onChange(name)
@@ -38,7 +35,8 @@ class CurrencySelector extends React.PureComponent {
   };
 
   render() {
-    const { currentCurrency, anchorEl } = this.state;
+    const { currentCurrency } = this.props;
+    const { anchorEl } = this.state;
     const { wallets } = this.props;
     return (
       <Fragment>

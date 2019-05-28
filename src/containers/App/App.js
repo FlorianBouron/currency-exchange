@@ -1,63 +1,92 @@
 import React from "react";
+import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import {
+  setCurrencies,
+  setCurrencyFrom,
+  setCurrencyTo,
+  selectors as selectorsCurrencies
+} from "../../redux/currencies";
+import { fetchRates } from "../../redux/rates";
+import { selectors as selectorsWallets } from "../../redux/wallets";
 import CurrentRate from "../../components/CurrentRate";
 import SwitchButton from "../../components/SwitchButton";
 import CurrencyContainer from "../CurrencyContainer";
+import config from "../../config";
 import styles from "./App.module.scss";
 
-const App = () => {
-  const wallets = [
-    {
-      id: "wallet-id-0",
-      name: "GBP",
-      amount: 200,
-      symbol: "£"
-    },
-    {
-      id: "wallet-id-1",
-      name: "EUR",
-      amount: 85,
-      symbol: "€"
-    },
-    {
-      id: "wallet-id-2",
-      name: "USD",
-      amount: 1000,
-      symbol: "$"
-    }
-  ];
-  return (
-    <div className={styles["app-container"]}>
-      <Paper className={styles["app-paper"]}>
-        <Typography variant="h5" component="h3" className={styles["app-title"]}>
-          Exchange
-        </Typography>
-        <CurrencyContainer wallets={wallets} currentCurrency="GBP" />
-        <SwitchButton
-          className={styles["app-switch-button"]}
-          onClick={() => {}}
-        />
-        <CurrentRate
-          rateFrom="1zl"
-          rateTo="0,231€"
-          className={styles["app-current-rate"]}
-        />
-        <CurrencyContainer
-          wallets={wallets}
-          currentCurrency="EUR"
-          isReadOnly
-          className={styles["app-currency-container-read-only"]}
-        />
-        <div className={styles["app-footer"]}>
-          <Button variant="contained" color="secondary">
-            Exchange
-          </Button>
-        </div>
-      </Paper>
-    </div>
-  );
-};
+class App extends React.Component {
+  componentDidMount() {
+    const { fetchRates } = this.props;
+    const { openexchangerates } = config;
+    const { frequencyFetching } = openexchangerates;
 
-export default App;
+    this.interval = setInterval(() => {
+      fetchRates();
+    }, frequencyFetching);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  render() {
+    const {
+      wallets,
+      currencies,
+      setCurrencies,
+      setCurrencyFrom,
+      setCurrencyTo
+    } = this.props;
+    const { currencyFrom, currencyTo } = currencies;
+    return (
+      <div className={styles["app-container"]}>
+        <Paper className={styles["app-paper"]}>
+          <Typography
+            variant="h5"
+            component="h3"
+            className={styles["app-title"]}
+          >
+            Exchange
+          </Typography>
+          <CurrencyContainer
+            wallets={wallets}
+            currentCurrency={currencyFrom}
+            onChangeCurrency={setCurrencyFrom}
+          />
+          <SwitchButton
+            className={styles["app-switch-button"]}
+            onClick={() => setCurrencies(currencyTo, currencyFrom)}
+          />
+          <CurrentRate
+            rateFrom="1zl"
+            rateTo="0,231€"
+            className={styles["app-current-rate"]}
+          />
+          <CurrencyContainer
+            wallets={wallets}
+            currentCurrency={currencyTo}
+            onChangeCurrency={setCurrencyTo}
+            isReadOnly
+            className={styles["app-currency-container-read-only"]}
+          />
+          <div className={styles["app-footer"]}>
+            <Button variant="contained" color="secondary">
+              Exchange
+            </Button>
+          </div>
+        </Paper>
+      </div>
+    );
+  }
+}
+
+export default connect(
+  (state, props) => ({
+    wallets: selectorsWallets.getWallets(state),
+    currencies: selectorsCurrencies.getCurrencies(state)
+  }),
+  { fetchRates, setCurrencies, setCurrencyFrom, setCurrencyTo }
+)(App);

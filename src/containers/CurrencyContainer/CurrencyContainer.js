@@ -1,40 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
+import { selectors } from "../../redux/wallets";
 import CurrencySelector from "../../components/CurrencySelector";
 import styles from "./CurrencyContainer.module.scss";
 
 class CurrencyContainer extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    const { wallets, currentCurrency, isReadOnly } = props;
-
-    let currentWallet = {
-      amount: 0,
-      symbol: "",
-      name: ""
-    };
-    if (wallets.length && currentCurrency) {
-      currentWallet = wallets.filter(
-        wallet => wallet.name === currentCurrency
-      )[0];
-    }
-    const { amount, symbol, name } = currentWallet;
-
     this.state = {
-      amount,
-      inputValue: amount,
-      symbol,
-      currencyName: name,
+      inputValue: "",
       error: ""
     };
 
+    const { isReadOnly } = props;
     this.signInput = isReadOnly ? "+" : "-";
   }
 
   handleChange = ({ target }) => {
-    const { amount } = this.state;
+    const { inputValue } = this.state;
     const { value } = target;
     const state = {
       inputValue: value
@@ -44,7 +29,7 @@ class CurrencyContainer extends React.PureComponent {
       state.inputValue = "";
     }
 
-    if (Math.abs(value) > amount) {
+    if (Math.abs(value) > inputValue) {
       state.error = "Exceed your balance";
     } else {
       state.error = "";
@@ -66,8 +51,13 @@ class CurrencyContainer extends React.PureComponent {
   };
 
   render() {
-    const { wallets, className } = this.props;
-    const { amount, inputValue, symbol, currencyName, error } = this.state;
+    const {
+      wallets,
+      className,
+      currentCurrency,
+      onChangeCurrency
+    } = this.props;
+    const { inputValue, error } = this.state;
     let displayInputValue = inputValue;
     if (
       this.signInput === "+" &&
@@ -79,13 +69,16 @@ class CurrencyContainer extends React.PureComponent {
       displayInputValue = `${this.signInput}${inputValue}`;
     }
 
+    const { wallet } = this.props;
+    const { symbol, amount } = wallet;
+
     return (
       <div className={[styles["currency-container"], className].join(" ")}>
         <div className={styles["currency-input-selector"]}>
           <CurrencySelector
-            currentCurrency={currencyName}
+            currentCurrency={currentCurrency}
             wallets={wallets}
-            onChange={() => {}}
+            onChange={onChangeCurrency}
           />
           <TextField
             value={displayInputValue}
@@ -121,7 +114,8 @@ CurrencyContainer.propTypes = {
   ),
   currentCurrency: PropTypes.string.isRequired,
   isReadOnly: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
+  onChangeCurrency: PropTypes.func.isRequired
 };
 
 CurrencyContainer.defaultProps = {
@@ -130,4 +124,6 @@ CurrencyContainer.defaultProps = {
   className: null
 };
 
-export default CurrencyContainer;
+export default connect((state, props) => ({
+  wallet: selectors.getWalletByName(state, props.currentCurrency)
+}))(CurrencyContainer);
