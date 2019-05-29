@@ -2,9 +2,9 @@ import { mergeDeep } from "../utils/helpers";
 
 const defaultConfig = {
   devToolsDisabled: false,
-  openexchangerates: {
-    urlApi: "https://openexchangerates.org/api",
-    ratesEndPoint: "latest.json",
+  exchangeratesapi: {
+    urlApi: "https://api.exchangeratesapi.io",
+    ratesEndPoint: "latest",
     frequencyFetching: 10000
   },
   currencies: ["GBP", "EUR", "USD"]

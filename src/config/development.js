@@ -1,6 +1,3 @@
 export default {
-  devToolsDisabled: false,
-  openexchangerates: {
-    key: ""
-  }
+  devToolsDisabled: false
 };

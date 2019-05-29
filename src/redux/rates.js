@@ -14,13 +14,12 @@ export const selectors = {
   getError: state => state.rates.error
 };
 
-export const fetchRates = () => {
-  const { openexchangerates, currencies } = config;
-  const { urlApi, ratesEndPoint, key } = openexchangerates;
-  const base = "USD";
+export const fetchRates = base => {
+  const { exchangeratesapi, currencies } = config;
+  const { urlApi, ratesEndPoint } = exchangeratesapi;
   const symbols = currencies.join("%2C");
   const request = axios.get(
-    `${urlApi}/${ratesEndPoint}?app_id=${key}&base=${base}&symbols=${symbols}`
+    `${urlApi}/${ratesEndPoint}?base=${base}&symbols=${symbols}`
   );
 
   return dispatch => {

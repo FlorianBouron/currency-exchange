@@ -1,4 +1,3 @@
 export default {
-  devToolsDisabled: true,
-  openexchangeratesApiId: ""
+  devToolsDisabled: true
 };

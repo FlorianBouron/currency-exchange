@@ -21,11 +21,11 @@ import styles from "./App.module.scss";
 class App extends React.Component {
   componentDidMount() {
     const { fetchRates } = this.props;
-    const { openexchangerates } = config;
-    const { frequencyFetching } = openexchangerates;
+    const { exchangeratesapi } = config;
+    const { frequencyFetching } = exchangeratesapi;
 
     this.interval = setInterval(() => {
-      fetchRates();
+      fetchRates("GBP");
     }, frequencyFetching);
   }
 
