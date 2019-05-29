@@ -3,8 +3,15 @@ const SET_CURRENCY_FROM = "currencies/SET_CURRENCY_FROM";
 const SET_CURRENCY_TO = "currencies/SET_CURRENCY_TO";
 
 const initialState = {
-  currencyFrom: "GBP",
-  currencyTo: "EUR"
+  currencyFrom: {
+    name: "GBP",
+    symbol: "£"
+  },
+
+  currencyTo: {
+    name: "EUR",
+    symbol: "€"
+  }
 };
 
 export const selectors = {
@@ -25,23 +32,25 @@ export const setCurrencies = (currencyFrom, currencyTo) => {
   };
 };
 
-export const setCurrencyFrom = currencyFrom => {
+export const setCurrencyFrom = (name, symbol) => {
   return dispatch => {
     dispatch({
       type: SET_CURRENCY_FROM,
       data: {
-        currencyFrom
+        name,
+        symbol
       }
     });
   };
 };
 
-export const setCurrencyTo = currencyTo => {
+export const setCurrencyTo = (name, symbol) => {
   return dispatch => {
     dispatch({
       type: SET_CURRENCY_TO,
       data: {
-        currencyTo
+        name,
+        symbol
       }
     });
   };
@@ -56,13 +65,13 @@ export default function reducer(state = initialState, action = {}) {
     }
     case SET_CURRENCY_FROM: {
       const { data } = action;
-      const { currencyFrom } = data;
-      return Object.assign({}, state, { currencyFrom });
+      const { name, symbol } = data;
+      return Object.assign({}, state, { currencyFrom: { name, symbol } });
     }
     case SET_CURRENCY_TO: {
       const { data } = action;
-      const { currencyTo } = data;
-      return Object.assign({}, state, { currencyTo });
+      const { name, symbol } = data;
+      return Object.assign({}, state, { currencyTo: { name, symbol } });
     }
     default:
       return state;

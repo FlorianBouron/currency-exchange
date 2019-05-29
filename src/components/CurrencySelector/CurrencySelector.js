@@ -59,9 +59,12 @@ class CurrencySelector extends React.PureComponent {
           onClose={this.handleCloseMenu}
         >
           {wallets.map(wallet => {
-            const { name, id } = wallet;
+            const { name, symbol, id } = wallet;
             return (
-              <MenuItem onClick={() => this.handleClickItem(name)} key={id}>
+              <MenuItem
+                onClick={() => this.handleClickItem(name, symbol)}
+                key={id}
+              >
                 {name}
               </MenuItem>
             );

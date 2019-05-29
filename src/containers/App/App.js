@@ -53,7 +53,7 @@ class App extends React.Component {
           </Typography>
           <CurrencyContainer
             wallets={wallets}
-            currentCurrency={currencyFrom}
+            currentCurrency={currencyFrom.name}
             onChangeCurrency={setCurrencyFrom}
           />
           <SwitchButton
@@ -61,13 +61,13 @@ class App extends React.Component {
             onClick={() => setCurrencies(currencyTo, currencyFrom)}
           />
           <CurrentRate
-            rateFrom="1zl"
-            rateTo="0,231€"
+            currencyFrom={currencyFrom}
+            currencyTo={currencyTo}
             className={styles["app-current-rate"]}
           />
           <CurrencyContainer
             wallets={wallets}
-            currentCurrency={currencyTo}
+            currentCurrency={currencyTo.name}
             onChangeCurrency={setCurrencyTo}
             isReadOnly
             className={styles["app-currency-container-read-only"]}

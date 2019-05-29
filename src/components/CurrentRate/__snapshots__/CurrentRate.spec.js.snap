@@ -1,14 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CurrentRate component expects component to never be changed 1`] = `
-<div
-  className="current-rate-container "
+<ContextProvider
+  value={null}
 >
-  <[object Object]
-    className="current-rate-icon"
+  <CurrentRate
+    className={null}
+    currencyFrom={
+      Object {
+        "name": "GBP",
+        "symbol": "£",
+      }
+    }
+    currencyTo={
+      Object {
+        "name": "EUR",
+        "symbol": "€",
+      }
+    }
+    dispatch={[Function]}
+    rate={null}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
   />
-  1zl
-   = 
-  0,231€
-</div>
+</ContextProvider>
 `;
