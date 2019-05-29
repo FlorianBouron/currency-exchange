@@ -64,6 +64,17 @@ class CurrencyContainer extends React.PureComponent {
     if ((event.charCode < 48 || event.charCode > 57) && event.charCode !== 46) {
       event.preventDefault();
     }
+
+    //Prevent to have two dots
+    if (event.target.value.indexOf(".") !== -1 && event.charCode === 46) {
+      event.preventDefault();
+    }
+
+    //Prevent to have more than two digits after the dot
+    const stringAfterDot = event.target.value.split(".")[1];
+    if (stringAfterDot && stringAfterDot.length >= 2) {
+      event.preventDefault();
+    }
   };
 
   render() {
