@@ -51,23 +51,6 @@ describe("CurrencySelector component", () => {
     expect(component.state("anchorEl")).not.toBe(null);
   });
 
-  it("fire the event onClick on the second MenuItem component", () => {
-    const elementStateIndex = 1;
-    component
-      .find(Button)
-      .first()
-      .simulate("click", fakeClickEvent);
-    expect(component.state("anchorEl")).not.toBe(null);
-    component
-      .find(MenuItem)
-      .at(elementStateIndex)
-      .simulate("click", fakeClickEvent);
-    expect(component.state("currentCurrency")).toBe(
-      wallets[elementStateIndex].name
-    );
-    expect(component.state("anchorEl")).toBe(null);
-  });
-
   it("fire the event onClose on the Menu component", () => {
     component
       .find(Button)
