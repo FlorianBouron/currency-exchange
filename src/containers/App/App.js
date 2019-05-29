@@ -9,7 +9,7 @@ import {
   setCurrencyTo,
   selectors as selectorsCurrencies
 } from "../../redux/currencies";
-import { fetchRates } from "../../redux/rates";
+import { fetchRates, selectors as selectorsRates } from "../../redux/rates";
 import { selectors as selectorsWallets } from "../../redux/wallets";
 import { selectors as selectorsErrors } from "../../redux/errors";
 import CurrentRate from "../../components/CurrentRate";
@@ -40,7 +40,8 @@ class App extends React.Component {
       setCurrencies,
       setCurrencyFrom,
       setCurrencyTo,
-      isExchangeAllowed
+      isNoBalanceErrors,
+      errorRate
     } = this.props;
     const { currencyFrom, currencyTo } = currencies;
     return (
@@ -78,7 +79,7 @@ class App extends React.Component {
             <Button
               variant="contained"
               color="secondary"
-              disabled={isExchangeAllowed}
+              disabled={isNoBalanceErrors || !!errorRate}
             >
               Exchange
             </Button>
@@ -93,9 +94,10 @@ export default connect(
   state => ({
     wallets: selectorsWallets.getWallets(state),
     currencies: selectorsCurrencies.getCurrencies(state),
-    isExchangeAllowed:
+    isNoBalanceErrors:
       !!selectorsErrors.getErrors(state).errorBalanceFrom ||
-      !!selectorsErrors.getErrors(state).errorBalanceTo
+      !!selectorsErrors.getErrors(state).errorBalanceTo,
+    errorRate: selectorsRates.getError(state)
   }),
   { fetchRates, setCurrencies, setCurrencyFrom, setCurrencyTo }
 )(App);

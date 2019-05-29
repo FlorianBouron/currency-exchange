@@ -1,11 +1,9 @@
 const SET_ERROR_BALANCE_FROM = "wallets/SET_ERROR_BALANCE_FROM";
 const SET_ERROR_BALANCE_TO = "wallets/SET_ERROR_BALANCE_TO";
-const SET_ERROR_FETCH_RATE = "wallets/SET_ERROR_FETCH_RATE";
 
 const initialState = {
   errorBalanceFrom: "",
-  errorBalanceTo: "",
-  errorFetchRate: ""
+  errorBalanceTo: ""
 };
 
 export const selectors = {
@@ -34,17 +32,6 @@ export const setErrorBalanceTo = error => {
   };
 };
 
-export const setErrorFetch = error => {
-  return dispatch => {
-    dispatch({
-      type: SET_ERROR_FETCH_RATE,
-      data: {
-        error
-      }
-    });
-  };
-};
-
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case SET_ERROR_BALANCE_FROM: {
@@ -56,11 +43,6 @@ export default function reducer(state = initialState, action = {}) {
       const { data } = action;
       const { error } = data;
       return Object.assign({}, state, { errorBalanceTo: error });
-    }
-    case SET_ERROR_FETCH_RATE: {
-      const { data } = action;
-      const { error } = data;
-      return Object.assign({}, state, { errorFetchRate: error });
     }
     default:
       return state;
