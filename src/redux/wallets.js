@@ -1,5 +1,5 @@
 const SET_AMOUNT = "wallets/SET_AMOUNT";
-const CONVERT_CURRENCY = "wallets/CONVERT_CURRENCY";
+const EXCHANGE_CURRENCY = "wallets/EXCHANGE_CURRENCY";
 
 const initialState = {
   data: [
@@ -30,7 +30,7 @@ export const selectors = {
     state.wallets.data.filter(wallet => wallet.name === name)[0]
 };
 
-export const convertCurrency = (
+export const exchangeCurrency = (
   wallets,
   walletNameFrom,
   walletNameTo,
@@ -48,7 +48,7 @@ export const convertCurrency = (
   wallets[indexWalletFrom].amount -= valueToConvert;
   return dispatch => {
     dispatch({
-      type: CONVERT_CURRENCY,
+      type: EXCHANGE_CURRENCY,
       data: {
         wallets
       }
@@ -80,7 +80,7 @@ export default function reducer(state = initialState, action = {}) {
       const dataToUpdate = [...data, [walletToUpdate]];
       return Object.assign({}, state, { data: dataToUpdate });
     }
-    case CONVERT_CURRENCY: {
+    case EXCHANGE_CURRENCY: {
       const { data } = action;
       const { wallets } = data;
       return Object.assign({}, state, { data: wallets });

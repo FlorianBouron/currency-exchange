@@ -11,7 +11,7 @@ import {
 } from "../../redux/currencies";
 import { fetchRates, selectors as selectorsRates } from "../../redux/rates";
 import {
-  convertCurrency,
+  exchangeCurrency,
   selectors as selectorsWallets
 } from "../../redux/wallets";
 import { selectors as selectorsErrors } from "../../redux/errors";
@@ -40,9 +40,9 @@ class App extends React.Component {
   }
 
   handleClickExchange = () => {
-    const { wallets, currencies, rates, convertCurrency } = this.props;
+    const { wallets, currencies, rates, exchangeCurrency } = this.props;
     const { currencyFrom, currencyTo } = currencies;
-    convertCurrency(
+    exchangeCurrency(
       wallets,
       currencyFrom.name,
       currencyTo.name,
@@ -126,5 +126,11 @@ export default connect(
     rates: selectorsRates.getRates(state),
     errorRate: selectorsRates.getError(state)
   }),
-  { fetchRates, setCurrencies, setCurrencyFrom, setCurrencyTo, convertCurrency }
+  {
+    fetchRates,
+    setCurrencies,
+    setCurrencyFrom,
+    setCurrencyTo,
+    exchangeCurrency
+  }
 )(App);
