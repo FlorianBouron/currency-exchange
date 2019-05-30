@@ -44,8 +44,12 @@ export const exchangeCurrency = (
   const indexWalletFrom = wallets.findIndex(
     wallet => wallet.name === walletNameFrom
   );
-  wallets[indexWalletTo].amount += amountTo;
-  wallets[indexWalletFrom].amount -= valueToConvert;
+  wallets[indexWalletTo].amount = (
+    wallets[indexWalletTo].amount + amountTo
+  ).toFixed(2);
+  wallets[indexWalletFrom].amount = (
+    wallets[indexWalletFrom].amount + valueToConvert
+  ).toFixed(2);
   return dispatch => {
     dispatch({
       type: EXCHANGE_CURRENCY,
