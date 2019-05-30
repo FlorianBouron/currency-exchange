@@ -12,6 +12,7 @@ import {
   setInputValue,
   selectors as selectorsCurrencies
 } from "../../redux/currencies";
+import { selectors as selectorsRates } from "../../redux/rates";
 import CurrencySelector from "../../components/CurrencySelector";
 import { errorLimit } from "../../constants/text";
 import styles from "./CurrencyContainer.module.scss";
@@ -35,7 +36,7 @@ class CurrencyContainer extends React.PureComponent {
   };
 
   handleChange = ({ target }) => {
-    const { amount, isReadOnly, setInputValue } = this.props;
+    const { amount, isReadOnly, setInputValue, rate } = this.props;
     const { value } = target;
     let inputValue = value;
 
@@ -48,7 +49,7 @@ class CurrencyContainer extends React.PureComponent {
     } else {
       this.setErrorMesages("");
     }
-    setInputValue(Number(isReadOnly), inputValue);
+    setInputValue(Number(isReadOnly), inputValue, rate);
   };
 
   handleAllowedCharacters = event => {
@@ -163,7 +164,8 @@ export default connect(
     inputValue: selectorsCurrencies.getInputValueByIndex(
       state,
       props.isReadOnly ? 1 : 0
-    )
+    ),
+    rate: selectorsRates.getRateByName(state, props.currencyRate)
   }),
   { setErrorBalanceFrom, setErrorBalanceTo, setInputValue }
 )(CurrencyContainer);

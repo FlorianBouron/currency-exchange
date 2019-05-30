@@ -28,13 +28,14 @@ export const selectors = {
       : ""
 };
 
-export const setInputValue = (indexCurrency, inputValue) => {
+export const setInputValue = (indexCurrency, inputValue, rate) => {
   return dispatch => {
     dispatch({
       type: SET_INPUT_VALUE,
       data: {
         indexCurrency,
-        inputValue
+        inputValue,
+        rate
       }
     });
   };
@@ -99,11 +100,35 @@ export default function reducer(state = initialState, action = {}) {
     }
     case SET_INPUT_VALUE: {
       const { data } = action;
-      const { indexCurrency, inputValue } = data;
+      const { indexCurrency, inputValue, rate } = data;
       const currencyKeyName = [Object.keys(state)[indexCurrency]][0];
       const currencyObject = state[currencyKeyName];
-      currencyObject.inputValue = inputValue;
-      return Object.assign({}, state, { [currencyKeyName]: currencyObject });
+      const connectedKeyName = [
+        Object.keys(state)[indexCurrency === 1 ? 0 : 1]
+      ][0];
+      const connectedObject = state[connectedKeyName];
+      if (
+        inputValue === "00" ||
+        inputValue === "0.0" ||
+        inputValue === "0.00"
+      ) {
+        currencyObject.inputValue = "0";
+        connectedObject.inputValue = "0";
+      } else if (inputValue !== "") {
+        currencyObject.inputValue = inputValue;
+        if (indexCurrency === 0) {
+          connectedObject.inputValue = Math.abs(inputValue * rate).toFixed(2);
+        } else {
+          connectedObject.inputValue = Math.abs(inputValue / rate).toFixed(2);
+        }
+      } else {
+        currencyObject.inputValue = "";
+        connectedObject.inputValue = "";
+      }
+      return Object.assign({}, state, {
+        [currencyKeyName]: currencyObject,
+        [connectedKeyName]: connectedObject
+      });
     }
     default:
       return state;
