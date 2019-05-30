@@ -13,6 +13,7 @@ import {
   selectors as selectorsCurrencies
 } from "../../redux/currencies";
 import CurrencySelector from "../../components/CurrencySelector";
+import { errorLimit } from "../../constants/text";
 import styles from "./CurrencyContainer.module.scss";
 
 class CurrencyContainer extends React.PureComponent {
@@ -43,8 +44,7 @@ class CurrencyContainer extends React.PureComponent {
     }
 
     if (Math.abs(value) > amount) {
-      const error = "Exceed your balance";
-      this.setErrorMesages(error);
+      this.setErrorMesages(errorLimit);
     } else {
       this.setErrorMesages("");
     }
@@ -94,6 +94,11 @@ class CurrencyContainer extends React.PureComponent {
       displayInputValue = `${this.signInput}${inputValue}`;
     } else if (this.signInput === "-" && inputValue > 0) {
       displayInputValue = `${this.signInput}${inputValue}`;
+    }
+
+    // Check if input > balance
+    if (Math.abs(displayInputValue) > amount) {
+      this.setErrorMesages(errorLimit);
     }
 
     return (
