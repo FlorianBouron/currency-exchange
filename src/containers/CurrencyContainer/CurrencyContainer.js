@@ -18,12 +18,6 @@ import { errorLimit } from "../../constants/text";
 import styles from "./CurrencyContainer.module.scss";
 
 class CurrencyContainer extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    const { isReadOnly } = props;
-    this.signInput = isReadOnly ? "+" : "-";
-  }
-
   setErrorMesages = message => {
     const { isReadOnly } = this.props;
     if (isReadOnly) {
@@ -39,10 +33,6 @@ class CurrencyContainer extends React.PureComponent {
     const { amount, isReadOnly, setInputValue, rate } = this.props;
     const { value } = target;
     let inputValue = value;
-
-    if (value === this.signInput) {
-      inputValue = "";
-    }
 
     if (Math.abs(value) > amount) {
       this.setErrorMesages(errorLimit);
@@ -86,19 +76,9 @@ class CurrencyContainer extends React.PureComponent {
       symbol,
       amount
     } = this.props;
-    let displayInputValue = inputValue;
-    if (
-      this.signInput === "+" &&
-      inputValue.toString().indexOf("+") === -1 &&
-      inputValue.toString().length
-    ) {
-      displayInputValue = `${this.signInput}${inputValue}`;
-    } else if (this.signInput === "-" && inputValue > 0) {
-      displayInputValue = `${this.signInput}${inputValue}`;
-    }
 
     // Check if input > balance
-    if (Math.abs(displayInputValue) > amount) {
+    if (Math.abs(inputValue) > amount) {
       this.setErrorMesages(errorLimit);
     }
 
@@ -111,7 +91,7 @@ class CurrencyContainer extends React.PureComponent {
             onChange={onChangeCurrency}
           />
           <TextField
-            value={displayInputValue}
+            value={inputValue}
             onChange={this.handleChange}
             onKeyPress={this.handleAllowedCharacters}
             type="text"
