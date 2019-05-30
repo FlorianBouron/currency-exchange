@@ -10,7 +10,10 @@ import {
   selectors as selectorsCurrencies
 } from "../../redux/currencies";
 import { fetchRates, selectors as selectorsRates } from "../../redux/rates";
-import { selectors as selectorsWallets } from "../../redux/wallets";
+import {
+  convertCurrency,
+  selectors as selectorsWallets
+} from "../../redux/wallets";
 import { selectors as selectorsErrors } from "../../redux/errors";
 import CurrentRate from "../../components/CurrentRate";
 import SwitchButton from "../../components/SwitchButton";
@@ -24,6 +27,7 @@ class App extends React.Component {
     const { exchangeratesapi } = config;
     const { frequencyFetching } = exchangeratesapi;
 
+    fetchRates("GBP");
     this.interval = setInterval(() => {
       fetchRates("GBP");
     }, frequencyFetching);
@@ -32,6 +36,18 @@ class App extends React.Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
+
+  handleClickExchange = () => {
+    const { wallets, currencies, rates, convertCurrency } = this.props;
+    const { currencyFrom, currencyTo } = currencies;
+    convertCurrency(
+      wallets,
+      currencyFrom.name,
+      currencyTo.name,
+      currencies.currencyFrom.inputValue,
+      rates[currencyTo.name]
+    );
+  };
 
   render() {
     const {
@@ -80,6 +96,7 @@ class App extends React.Component {
               variant="contained"
               color="secondary"
               disabled={isNoBalanceErrors || !!errorRate}
+              onClick={this.handleClickExchange}
             >
               Exchange
             </Button>
@@ -97,7 +114,8 @@ export default connect(
     isNoBalanceErrors:
       !!selectorsErrors.getErrors(state).errorBalanceFrom ||
       !!selectorsErrors.getErrors(state).errorBalanceTo,
+    rates: selectorsRates.getRates(state),
     errorRate: selectorsRates.getError(state)
   }),
-  { fetchRates, setCurrencies, setCurrencyFrom, setCurrencyTo }
+  { fetchRates, setCurrencies, setCurrencyFrom, setCurrencyTo, convertCurrency }
 )(App);

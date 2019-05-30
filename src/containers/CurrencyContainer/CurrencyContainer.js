@@ -8,16 +8,16 @@ import {
   setErrorBalanceTo,
   selectors as selectorsErrors
 } from "../../redux/errors";
+import {
+  setInputValue,
+  selectors as selectorsCurrencies
+} from "../../redux/currencies";
 import CurrencySelector from "../../components/CurrencySelector";
 import styles from "./CurrencyContainer.module.scss";
 
 class CurrencyContainer extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      inputValue: ""
-    };
-
     const { isReadOnly } = props;
     this.signInput = isReadOnly ? "+" : "-";
   }
@@ -34,24 +34,21 @@ class CurrencyContainer extends React.PureComponent {
   };
 
   handleChange = ({ target }) => {
-    const { wallet } = this.props;
+    const { amount, isReadOnly, setInputValue } = this.props;
     const { value } = target;
-    const state = {
-      inputValue: value
-    };
+    let inputValue = value;
 
     if (value === this.signInput) {
-      state.inputValue = "";
+      inputValue = "";
     }
 
-    if (Math.abs(value) > wallet.amount) {
+    if (Math.abs(value) > amount) {
       const error = "Exceed your balance";
       this.setErrorMesages(error);
     } else {
       this.setErrorMesages("");
     }
-
-    this.setState(state);
+    setInputValue(Number(isReadOnly), inputValue);
   };
 
   handleAllowedCharacters = event => {
@@ -83,9 +80,11 @@ class CurrencyContainer extends React.PureComponent {
       className,
       currentCurrency,
       onChangeCurrency,
-      error
+      error,
+      inputValue,
+      symbol,
+      amount
     } = this.props;
-    const { inputValue } = this.state;
     let displayInputValue = inputValue;
     if (
       this.signInput === "+" &&
@@ -96,9 +95,6 @@ class CurrencyContainer extends React.PureComponent {
     } else if (this.signInput === "-" && inputValue > 0) {
       displayInputValue = `${this.signInput}${inputValue}`;
     }
-
-    const { wallet } = this.props;
-    const { symbol, amount } = wallet;
 
     return (
       <div className={[styles["currency-container"], className].join(" ")}>
@@ -154,10 +150,15 @@ CurrencyContainer.defaultProps = {
 
 export default connect(
   (state, props) => ({
-    wallet: selectors.getWalletByName(state, props.currentCurrency),
+    amount: selectors.getWalletByName(state, props.currentCurrency).amount,
+    symbol: selectors.getWalletByName(state, props.currentCurrency).symbol,
     error: selectorsErrors.getErrors(state)[
       props.isReadOnly ? "errorBalanceTo" : "errorBalanceFrom"
-    ]
+    ],
+    inputValue: selectorsCurrencies.getInputValueByIndex(
+      state,
+      Number(props.isReadOnly)
+    )
   }),
-  { setErrorBalanceFrom, setErrorBalanceTo }
+  { setErrorBalanceFrom, setErrorBalanceTo, setInputValue }
 )(CurrencyContainer);

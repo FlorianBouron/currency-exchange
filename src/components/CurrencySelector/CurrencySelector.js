@@ -18,13 +18,13 @@ class CurrencySelector extends React.PureComponent {
     this.setState({ anchorEl: event.currentTarget });
   };
 
-  handleClickItem = name => {
+  handleClickItem = (name, symbol) => {
     const { onChange } = this.props;
     this.setState(
       {
         anchorEl: null
       },
-      onChange(name)
+      onChange(name, symbol)
     );
   };
 

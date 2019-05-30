@@ -1,4 +1,5 @@
 const SET_AMOUNT = "wallets/SET_AMOUNT";
+const CONVERT_CURRENCY = "wallets/CONVERT_CURRENCY";
 
 const initialState = {
   data: [
@@ -29,6 +30,32 @@ export const selectors = {
     state.wallets.data.filter(wallet => wallet.name === name)[0]
 };
 
+export const convertCurrency = (
+  wallets,
+  walletNameFrom,
+  walletNameTo,
+  valueToConvert,
+  rate
+) => {
+  const amountTo = valueToConvert * rate;
+  const indexWalletTo = wallets.findIndex(
+    wallet => wallet.name === walletNameTo
+  );
+  const indexWalletFrom = wallets.findIndex(
+    wallet => wallet.name === walletNameFrom
+  );
+  wallets[indexWalletTo].amount += amountTo;
+  wallets[indexWalletFrom].amount -= valueToConvert;
+  return dispatch => {
+    dispatch({
+      type: CONVERT_CURRENCY,
+      data: {
+        wallets
+      }
+    });
+  };
+};
+
 export const setAmount = (walletId, amount) => {
   return dispatch => {
     dispatch({
@@ -52,6 +79,11 @@ export default function reducer(state = initialState, action = {}) {
       walletToUpdate.amount = amount;
       const dataToUpdate = [...data, [walletToUpdate]];
       return Object.assign({}, state, { data: dataToUpdate });
+    }
+    case CONVERT_CURRENCY: {
+      const { data } = action;
+      const { wallets } = data;
+      return Object.assign({}, state, { data: wallets });
     }
     default:
       return state;

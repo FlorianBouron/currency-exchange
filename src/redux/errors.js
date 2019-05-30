@@ -1,5 +1,5 @@
-const SET_ERROR_BALANCE_FROM = "wallets/SET_ERROR_BALANCE_FROM";
-const SET_ERROR_BALANCE_TO = "wallets/SET_ERROR_BALANCE_TO";
+const SET_ERROR_BALANCE_FROM = "errors/SET_ERROR_BALANCE_FROM";
+const SET_ERROR_BALANCE_TO = "errors/SET_ERROR_BALANCE_TO";
 
 const initialState = {
   errorBalanceFrom: "",
