@@ -22,14 +22,16 @@ import config from "../../config";
 import styles from "./App.module.scss";
 
 class App extends React.Component {
+  currencyToFetch = "GBP";
+
   componentDidMount() {
     const { fetchRates } = this.props;
     const { exchangeratesapi } = config;
     const { frequencyFetching } = exchangeratesapi;
 
-    fetchRates("GBP");
+    fetchRates(this.currencyToFetch);
     this.interval = setInterval(() => {
-      fetchRates("GBP");
+      fetchRates(this.currencyToFetch);
     }, frequencyFetching);
   }
 
@@ -49,11 +51,18 @@ class App extends React.Component {
     );
   };
 
+  handleClickSwitch = () => {
+    const { setCurrencies, currencies, fetchRates } = this.props;
+    const { currencyFrom, currencyTo } = currencies;
+    this.currencyToFetch = currencyTo.name;
+    setCurrencies(currencyTo, currencyFrom);
+    fetchRates(this.currencyToFetch);
+  };
+
   render() {
     const {
       wallets,
       currencies,
-      setCurrencies,
       setCurrencyFrom,
       setCurrencyTo,
       isNoBalanceErrors,
@@ -77,7 +86,7 @@ class App extends React.Component {
           />
           <SwitchButton
             className={styles["app-switch-button"]}
-            onClick={() => setCurrencies(currencyTo, currencyFrom)}
+            onClick={this.handleClickSwitch}
           />
           <CurrentRate
             currencyFrom={currencyFrom}

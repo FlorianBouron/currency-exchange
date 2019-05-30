@@ -157,7 +157,7 @@ export default connect(
     ],
     inputValue: selectorsCurrencies.getInputValueByIndex(
       state,
-      Number(props.isReadOnly)
+      props.isReadOnly ? 1 : 0
     )
   }),
   { setErrorBalanceFrom, setErrorBalanceTo, setInputValue }
