@@ -1,7 +1,7 @@
-import reducers from "./redux";
+import reducers from ".";
 import { createStore, compose, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
-import config from "./config";
+import config from "../config";
 
 let composeEnhancers;
 
