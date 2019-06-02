@@ -4,6 +4,7 @@ exports[`CurrencySelector component expects component to never be changed 1`] = 
 <Fragment>
   <WithStyles(ForwardRef(Button))
     aria-haspopup="true"
+    aria-owns={null}
     classes={
       Object {
         "label": "currency-selector-button",
@@ -47,6 +48,7 @@ exports[`CurrencySelector component expects component to never be changed with n
 <Fragment>
   <WithStyles(ForwardRef(Button))
     aria-haspopup="true"
+    aria-owns={null}
     classes={
       Object {
         "label": "currency-selector-button",
