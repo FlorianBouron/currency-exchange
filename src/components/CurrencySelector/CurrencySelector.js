@@ -24,7 +24,7 @@ class CurrencySelector extends React.PureComponent {
       {
         anchorEl: null
       },
-      onChange(name, symbol)
+      () => onChange(name, symbol)
     );
   };
 
@@ -38,11 +38,12 @@ class CurrencySelector extends React.PureComponent {
     const { currentCurrency } = this.props;
     const { anchorEl } = this.state;
     const { wallets } = this.props;
+    const menuId = "currency-selector";
     return (
       <Fragment>
         <Button
           size="large"
-          aria-owns={anchorEl ? "currency-selector" : undefined}
+          aria-owns={anchorEl && menuId}
           aria-haspopup="true"
           onClick={this.handleClickButton}
           classes={{
@@ -53,7 +54,7 @@ class CurrencySelector extends React.PureComponent {
           <KeyboardArrowDown />
         </Button>
         <Menu
-          id="currency-selector"
+          id={menuId}
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={this.handleCloseMenu}
