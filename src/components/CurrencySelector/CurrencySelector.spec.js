@@ -3,6 +3,14 @@ import { shallow } from "enzyme";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import {
+  GBP_NAME,
+  EUR_NAME,
+  USD_NAME,
+  GBP_SYMBOL,
+  EUR_SYMBOL,
+  USD_SYMBOL
+} from "../../constants/currencies";
 import CurrencySelector from ".";
 
 describe("CurrencySelector component", () => {
@@ -12,18 +20,21 @@ describe("CurrencySelector component", () => {
   const wallets = [
     {
       id: "wallet-id-0",
-      name: "GBP",
-      amount: 200
+      name: GBP_NAME,
+      amount: 200,
+      symbol: GBP_SYMBOL
     },
     {
       id: "wallet-id-1",
-      name: "EUR",
-      amount: 85
+      name: EUR_NAME,
+      amount: 85,
+      symbol: EUR_SYMBOL
     },
     {
       id: "wallet-id-2",
-      name: "USD",
-      amount: 1000
+      name: USD_NAME,
+      amount: 1000,
+      symbol: USD_SYMBOL
     }
   ];
   const basicProps = {

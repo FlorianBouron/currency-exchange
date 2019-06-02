@@ -22,7 +22,7 @@ import config from "../../config";
 import styles from "./App.module.scss";
 
 class App extends React.Component {
-  currencyToFetch = "GBP";
+  currencyToFetch = config.defaultCurrencies.from.name;
 
   componentDidMount() {
     const { fetchRates } = this.props;

@@ -1,4 +1,11 @@
 import { mergeDeep } from "../utils/helpers";
+import {
+  GBP_NAME,
+  EUR_NAME,
+  USD_NAME,
+  GBP_SYMBOL,
+  EUR_SYMBOL
+} from "../constants/currencies";
 
 const defaultConfig = {
   devToolsDisabled: false,
@@ -7,7 +14,17 @@ const defaultConfig = {
     ratesEndPoint: "latest",
     frequencyFetching: 10000
   },
-  currencies: ["GBP", "EUR", "USD"]
+  currencies: [GBP_NAME, EUR_NAME, USD_NAME],
+  defaultCurrencies: {
+    from: {
+      name: GBP_NAME,
+      symbol: GBP_SYMBOL
+    },
+    to: {
+      name: EUR_NAME,
+      symbol: EUR_SYMBOL
+    }
+  }
 };
 
 const env = process.env.REACT_APP_ENV || "development";

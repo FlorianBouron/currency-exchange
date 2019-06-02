@@ -1,18 +1,21 @@
+import config from "../config";
+
 const SET_CURRENCIES = "currencies/SET_CURRENCIES";
 const SET_CURRENCY_FROM = "currencies/SET_CURRENCY_FROM";
 const SET_CURRENCY_TO = "currencies/SET_CURRENCY_TO";
 const SET_INPUT_VALUE = "currencies/SET_INPUT_VALUE";
 
+const { defaultCurrencies } = config;
 const initialState = {
   currencyFrom: {
-    name: "GBP",
-    symbol: "£",
+    name: defaultCurrencies.from.name,
+    symbol: defaultCurrencies.from.symbol,
     inputValue: ""
   },
 
   currencyTo: {
-    name: "EUR",
-    symbol: "€",
+    name: defaultCurrencies.to.name,
+    symbol: defaultCurrencies.to.symbol,
     inputValue: ""
   }
 };

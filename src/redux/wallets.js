@@ -1,3 +1,12 @@
+import {
+  GBP_NAME,
+  EUR_NAME,
+  USD_NAME,
+  GBP_SYMBOL,
+  EUR_SYMBOL,
+  USD_SYMBOL
+} from "../constants/currencies";
+
 const SET_AMOUNT = "wallets/SET_AMOUNT";
 const EXCHANGE_CURRENCY = "wallets/EXCHANGE_CURRENCY";
 
@@ -5,21 +14,21 @@ const initialState = {
   data: [
     {
       id: "wallet-id-0",
-      name: "GBP",
+      name: GBP_NAME,
       amount: 200,
-      symbol: "£"
+      symbol: GBP_SYMBOL
     },
     {
       id: "wallet-id-1",
-      name: "EUR",
+      name: EUR_NAME,
       amount: 85,
-      symbol: "€"
+      symbol: EUR_SYMBOL
     },
     {
       id: "wallet-id-2",
-      name: "USD",
+      name: USD_NAME,
       amount: 1000,
-      symbol: "$"
+      symbol: USD_SYMBOL
     }
   ]
 };
