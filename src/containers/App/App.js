@@ -71,11 +71,11 @@ class App extends React.Component {
     const { currencyFrom, currencyTo } = currencies;
     return (
       <div className={styles["app-container"]}>
-        <Paper className={styles["app-paper"]}>
+        <Paper className={styles["app__paper"]}>
           <Typography
             variant="h5"
             component="h3"
-            className={styles["app-title"]}
+            className={styles["app__title"]}
           >
             Exchange
           </Typography>
@@ -86,13 +86,13 @@ class App extends React.Component {
             onChangeCurrency={setCurrencyFrom}
           />
           <SwitchButton
-            className={styles["app-switch-button"]}
+            className={styles["app__switch-button"]}
             onClick={this.handleClickSwitch}
           />
           <CurrentRate
             currencyFrom={currencyFrom}
             currencyTo={currencyTo}
-            className={styles["app-current-rate"]}
+            className={styles["app__current-rate"]}
           />
           <CurrencyContainer
             wallets={wallets}
@@ -100,9 +100,9 @@ class App extends React.Component {
             currencyRate={currencyTo.name}
             onChangeCurrency={setCurrencyTo}
             isReadOnly
-            className={styles["app-currency-container-read-only"]}
+            className={styles["app__currency-container-read-only"]}
           />
-          <div className={styles["app-footer"]}>
+          <div className={styles["app__footer"]}>
             <Button
               variant="contained"
               color="secondary"

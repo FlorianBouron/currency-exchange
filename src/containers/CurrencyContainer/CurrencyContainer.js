@@ -84,7 +84,7 @@ class CurrencyContainer extends React.PureComponent {
 
     return (
       <div className={[styles["currency-container"], className].join(" ")}>
-        <div className={styles["currency-input-selector"]}>
+        <div className={styles["currency__input-selector"]}>
           <CurrencySelector
             currentCurrency={currentCurrency}
             wallets={wallets}
@@ -96,15 +96,15 @@ class CurrencyContainer extends React.PureComponent {
             onKeyPress={this.handleAllowedCharacters}
             type="text"
             placeholder="0"
-            className={styles["currency-text-field"]}
+            className={styles["currency__text-field"]}
             InputLabelProps={{
               shrink: true
             }}
             margin="normal"
           />
         </div>
-        <div className={styles["currency-info"]}>
-          <div className={error ? [styles["currency-balance-error"]] : null}>
+        <div className={styles["currency__info"]}>
+          <div className={error ? [styles["currency__balance-error"]] : null}>
             Balance: {`${symbol}${amount}`}
           </div>
           {error ? <span>{error}</span> : null}

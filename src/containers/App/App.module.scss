@@ -7,36 +7,36 @@
   justify-content: center;
   align-items: center;
 
-  .app-paper {
+  .app__paper {
     width: px2rem(400px);
     padding: px2rem(20px);
   }
 
-  .app-title {
+  .app__title {
     text-align: center;
   }
 
-  .app-switch-button {
+  .app__switch-button {
     position: absolute;
     top: calc(50% - #{px2rem(14px)});
     transform: translate(-50%, -50%);
     margin-left: 20px;
   }
 
-  .app-current-rate {
+  .app__current-rate {
     position: absolute;
     top: calc(50% - #{px2rem(14px)});
     left: 50%;
     transform: translate(-50%, -50%);
   }
 
-  .app-currency-container-read-only {
+  .app__currency-container-read-only {
     margin: 0 px2rem(-20px) px2rem(20px) px2rem(-20px);
     padding: px2rem(30px) px2rem(40px);
     background-color: $primary-gray;
   }
 
-  .app-footer {
+  .app__footer {
     display: flex;
     justify-content: center;
   }

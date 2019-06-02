@@ -3,24 +3,24 @@
 
 .currency-container {
   padding: px2rem(30px) px2rem(20px);
-  .currency-input-selector {
+  .currency__input-selector {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    .currency-text-field {
+    .currency__text-field {
       input {
         text-align: right;
       }
     }
   }
-  .currency-info {
+  .currency__info {
     margin: px2rem(12px) 0;
     padding-left: px2rem(25px);
     display: flex;
     justify-content: space-between;
     color: $secondary-gray;
-    .currency-balance-error {
+    .currency__balance-error {
       color: $primary-pink;
     }
   }

@@ -8,7 +8,7 @@ exports[`SwitchButton component expects component to never be changed 1`] = `
   size="small"
 >
   <[object Object]
-    className="switch-icon"
+    className="switch-button__icon"
   />
 </WithStyles(ForwardRef(Fab))>
 `;

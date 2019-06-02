@@ -8,7 +8,7 @@ import styles from "./CurrentRate.module.scss";
 const CurrentRate = ({ currencyFrom, currencyTo, className, rate }) => {
   return (
     <div className={[styles["current-rate-container"], className].join(" ")}>
-      <TrendingUp className={styles["current-rate-icon"]} />
+      <TrendingUp className={styles["current-rate__icon"]} />
       {`1${currencyFrom.symbol} = ${rate}${currencyTo.symbol}`}
     </div>
   );

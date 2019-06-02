@@ -12,7 +12,7 @@ const SwitchButton = ({ className, onClick }) => {
       size="small"
       onClick={onClick}
     >
-      <CompareArrows className={styles["switch-icon"]} />
+      <CompareArrows className={styles["switch-button__icon"]} />
     </Fab>
   );
 };
