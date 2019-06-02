@@ -110,11 +110,7 @@ export default function reducer(state = initialState, action = {}) {
         Object.keys(state)[indexCurrency === 1 ? 0 : 1]
       ][0];
       const connectedObject = state[connectedKeyName];
-      if (
-        inputValue === "00" ||
-        inputValue === "0.0" ||
-        inputValue === "0.00"
-      ) {
+      if (Number(inputValue) === 0) {
         currencyObject.inputValue = "0";
         connectedObject.inputValue = "0";
       } else if (inputValue !== "") {
