@@ -9,7 +9,8 @@ import {
   setCurrencyTo
 } from "../../redux/actions/currencies";
 import { selectors as selectorsCurrencies } from "../../redux/selectors/currencies";
-import { fetchRates, selectors as selectorsRates } from "../../redux/rates";
+import { fetchRates } from "../../redux/actions/rates";
+import { selectors as selectorsRates } from "../../redux/selectors/rates";
 import { exchangeCurrency } from "../../redux/actions/wallets";
 import { selectors as selectorsWallets } from "../../redux/selectors/wallets";
 import { selectors as selectorsErrors } from "../../redux/selectors/errors";

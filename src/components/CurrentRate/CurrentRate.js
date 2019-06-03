@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TrendingUp from "@material-ui/icons/TrendingUp";
-import { selectors } from "../../redux/rates";
+import { selectors } from "../../redux/selectors/rates";
 import styles from "./CurrentRate.module.scss";
 
 const CurrentRate = ({ currencyFrom, currencyTo, className, rate }) => (

@@ -10,7 +10,7 @@ import {
 import { selectors as selectorsErrors } from "../../redux/selectors/errors";
 import { setInputValue } from "../../redux/actions/currencies";
 import { selectors as selectorsCurrencies } from "../../redux/selectors/currencies";
-import { selectors as selectorsRates } from "../../redux/rates";
+import { selectors as selectorsRates } from "../../redux/selectors/rates";
 import CurrencySelector from "../../components/CurrencySelector";
 import { errorLimit } from "../../constants/text";
 import styles from "./CurrencyContainer.module.scss";
