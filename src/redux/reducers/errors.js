@@ -1,35 +1,11 @@
-const SET_ERROR_BALANCE_FROM = "errors/SET_ERROR_BALANCE_FROM";
-const SET_ERROR_BALANCE_TO = "errors/SET_ERROR_BALANCE_TO";
+import {
+  SET_ERROR_BALANCE_FROM,
+  SET_ERROR_BALANCE_TO
+} from "../actions/errors";
 
 const initialState = {
   errorBalanceFrom: "",
   errorBalanceTo: ""
-};
-
-export const selectors = {
-  getErrors: state => state.errors
-};
-
-export const setErrorBalanceFrom = error => {
-  return dispatch => {
-    dispatch({
-      type: SET_ERROR_BALANCE_FROM,
-      data: {
-        error
-      }
-    });
-  };
-};
-
-export const setErrorBalanceTo = error => {
-  return dispatch => {
-    dispatch({
-      type: SET_ERROR_BALANCE_TO,
-      data: {
-        error
-      }
-    });
-  };
 };
 
 export default function reducer(state = initialState, action = {}) {

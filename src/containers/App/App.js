@@ -12,7 +12,7 @@ import { selectors as selectorsCurrencies } from "../../redux/selectors/currenci
 import { fetchRates, selectors as selectorsRates } from "../../redux/rates";
 import { exchangeCurrency } from "../../redux/actions/wallets";
 import { selectors as selectorsWallets } from "../../redux/selectors/wallets";
-import { selectors as selectorsErrors } from "../../redux/errors";
+import { selectors as selectorsErrors } from "../../redux/selectors/errors";
 import CurrentRate from "../../components/CurrentRate";
 import SwitchButton from "../../components/SwitchButton";
 import CurrencyContainer from "../CurrencyContainer";

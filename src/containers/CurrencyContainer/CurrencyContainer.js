@@ -5,9 +5,9 @@ import TextField from "@material-ui/core/TextField";
 import { selectors } from "../../redux/selectors/wallets";
 import {
   setErrorBalanceFrom,
-  setErrorBalanceTo,
-  selectors as selectorsErrors
-} from "../../redux/errors";
+  setErrorBalanceTo
+} from "../../redux/actions/errors";
+import { selectors as selectorsErrors } from "../../redux/selectors/errors";
 import { setInputValue } from "../../redux/actions/currencies";
 import { selectors as selectorsCurrencies } from "../../redux/selectors/currencies";
 import { selectors as selectorsRates } from "../../redux/rates";
