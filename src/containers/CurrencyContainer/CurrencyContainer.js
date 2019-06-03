@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
-import { selectors } from "../../redux/wallets";
+import { selectors } from "../../redux/selectors/wallets";
 import {
   setErrorBalanceFrom,
   setErrorBalanceTo,
