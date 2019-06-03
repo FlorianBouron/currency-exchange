@@ -1,11 +1,13 @@
-import config from "../config";
-
-const SET_CURRENCIES = "currencies/SET_CURRENCIES";
-const SET_CURRENCY_FROM = "currencies/SET_CURRENCY_FROM";
-const SET_CURRENCY_TO = "currencies/SET_CURRENCY_TO";
-const SET_INPUT_VALUE = "currencies/SET_INPUT_VALUE";
+import config from "../../config";
+import {
+  SET_CURRENCIES,
+  SET_CURRENCY_FROM,
+  SET_CURRENCY_TO,
+  SET_INPUT_VALUE
+} from "../actions/currencies";
 
 const { defaultCurrencies } = config;
+
 const initialState = {
   currencyFrom: {
     name: defaultCurrencies.from.name,
@@ -20,79 +22,28 @@ const initialState = {
   }
 };
 
-export const selectors = {
-  getCurrencies: state => state.currencies,
-  getCurrencyFrom: state => state.currencies.currencyFrom,
-  getCurrencyTo: state => state.currencies.currencyTo,
-  getInputValueByIndex: (state, indexCurrency) =>
-    [Object.keys(state.currencies)[indexCurrency]][0]
-      ? state.currencies[[Object.keys(state.currencies)[indexCurrency]][0]]
-          .inputValue
-      : ""
-};
-
-export const setInputValue = (indexCurrency, inputValue, rate) => {
-  return dispatch => {
-    dispatch({
-      type: SET_INPUT_VALUE,
-      data: {
-        indexCurrency,
-        inputValue,
-        rate
-      }
-    });
-  };
-};
-
-export const setCurrencies = (currencyFrom, currencyTo) => {
-  return dispatch => {
-    dispatch({
-      type: SET_CURRENCIES,
-      data: {
-        currencyFrom,
-        currencyTo
-      }
-    });
-  };
-};
-
-export const setCurrencyFrom = (name, symbol) => {
-  return dispatch => {
-    dispatch({
-      type: SET_CURRENCY_FROM,
-      data: {
-        name,
-        symbol
-      }
-    });
-  };
-};
-
-export const setCurrencyTo = (name, symbol) => {
-  return dispatch => {
-    dispatch({
-      type: SET_CURRENCY_TO,
-      data: {
-        name,
-        symbol
-      }
-    });
-  };
-};
-
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case SET_CURRENCIES: {
       const { data } = action;
       const { currencyFrom, currencyTo } = data;
-      return Object.assign({}, state, { currencyFrom, currencyTo });
+      return {
+        ...state,
+        currencyFrom,
+        currencyTo
+      };
     }
     case SET_CURRENCY_FROM: {
       const { data } = action;
       const { name, symbol } = data;
-      return Object.assign({}, state, {
-        currencyFrom: { name, symbol, inputValue: "" }
-      });
+      return {
+        ...state,
+        currencyFrom: {
+          name,
+          symbol,
+          inputValue: ""
+        }
+      };
     }
     case SET_CURRENCY_TO: {
       const { data } = action;
@@ -124,12 +75,24 @@ export default function reducer(state = initialState, action = {}) {
         currencyObject.inputValue = "";
         connectedObject.inputValue = "";
       }
-      return Object.assign({}, state, {
+      return {
+        ...state,
         [currencyKeyName]: currencyObject,
         [connectedKeyName]: connectedObject
-      });
+      };
     }
     default:
       return state;
   }
 }
+
+export const selectors = {
+  getCurrencies: state => state.currencies,
+  getCurrencyFrom: state => state.currencies.currencyFrom,
+  getCurrencyTo: state => state.currencies.currencyTo,
+  getInputValueByIndex: (state, indexCurrency) =>
+    [Object.keys(state.currencies)[indexCurrency]][0]
+      ? state.currencies[[Object.keys(state.currencies)[indexCurrency]][0]]
+          .inputValue
+      : ""
+};

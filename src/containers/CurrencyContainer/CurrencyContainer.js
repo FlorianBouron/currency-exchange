@@ -8,10 +8,8 @@ import {
   setErrorBalanceTo,
   selectors as selectorsErrors
 } from "../../redux/errors";
-import {
-  setInputValue,
-  selectors as selectorsCurrencies
-} from "../../redux/currencies";
+import { setInputValue } from "../../redux/actions/currencies";
+import { selectors as selectorsCurrencies } from "../../redux/selectors/currencies";
 import { selectors as selectorsRates } from "../../redux/rates";
 import CurrencySelector from "../../components/CurrencySelector";
 import { errorLimit } from "../../constants/text";

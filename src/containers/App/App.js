@@ -6,9 +6,9 @@ import Button from "@material-ui/core/Button";
 import {
   setCurrencies,
   setCurrencyFrom,
-  setCurrencyTo,
-  selectors as selectorsCurrencies
-} from "../../redux/currencies";
+  setCurrencyTo
+} from "../../redux/actions/currencies";
+import { selectors as selectorsCurrencies } from "../../redux/selectors/currencies";
 import { fetchRates, selectors as selectorsRates } from "../../redux/rates";
 import {
   exchangeCurrency,
