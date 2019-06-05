@@ -7,6 +7,7 @@ import { setErrorBalanceFrom } from "../../redux/actions/errors";
 import { selectors as selectorsErrors } from "../../redux/selectors/errors";
 import { setInputValue } from "../../redux/actions/currencies";
 import { selectors as selectorsCurrencies } from "../../redux/selectors/currencies";
+import { fetchRates } from "../../redux/actions/rates";
 import { selectors as selectorsRates } from "../../redux/selectors/rates";
 import CurrencySelector from "../../components/CurrencySelector";
 import { errorLimit } from "../../constants/text";
@@ -61,7 +62,8 @@ class CurrencyContainer extends React.PureComponent {
       symbol,
       amount,
       isReadOnly,
-      setErrorBalanceFrom
+      setErrorBalanceFrom,
+      fetchRates
     } = this.props;
 
     // Check if input > balance
@@ -76,6 +78,7 @@ class CurrencyContainer extends React.PureComponent {
             currentCurrency={currentCurrency}
             wallets={wallets}
             onChange={onChangeCurrency}
+            fetchRates={fetchRates}
           />
           <NumberFormat
             value={inputValue}
@@ -131,5 +134,5 @@ export default connect(
     ),
     rate: selectorsRates.getRateByName(state, props.currencyRate)
   }),
-  { setErrorBalanceFrom, setInputValue }
+  { setErrorBalanceFrom, setInputValue, fetchRates }
 )(CurrencyContainer);

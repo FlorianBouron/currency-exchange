@@ -19,12 +19,15 @@ class CurrencySelector extends React.PureComponent {
   };
 
   handleClickItem = (name, symbol) => {
-    const { onChange } = this.props;
+    const { onChange, fetchRates } = this.props;
     this.setState(
       {
         anchorEl: null
       },
-      () => onChange(name, symbol)
+      () => {
+        onChange(name, symbol);
+        fetchRates(name);
+      }
     );
   };
 
@@ -85,7 +88,8 @@ CurrencySelector.propTypes = {
       amount: PropTypes.number.isRequired
     })
   ),
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  fetchRates: PropTypes.func.isRequired
 };
 
 CurrencySelector.defaultProps = {
