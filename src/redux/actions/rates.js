@@ -5,8 +5,10 @@ export const FETCH_RATES = "rates/FETCH_RATES";
 export const FETCH_RATES_ERROR = "rates/FETCH_RATES_ERROR";
 
 export const fetchRates = base => {
-  const { exchangeratesapi, currencies } = config;
+  const { exchangeratesapi } = config;
+  let { currencies } = config;
   const { urlApi, ratesEndPoint } = exchangeratesapi;
+  currencies = currencies.filter(currency => currency !== base);
   const symbols = currencies.join("%2C");
   const request = axios.get(
     `${urlApi}/${ratesEndPoint}?base=${base}&symbols=${symbols}`
