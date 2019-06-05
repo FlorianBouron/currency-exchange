@@ -40,7 +40,8 @@ describe("CurrencySelector component", () => {
   const basicProps = {
     currentCurrency: "GBP",
     wallets,
-    onChange: () => {}
+    onChange: jest.fn(),
+    fetchRates: jest.fn()
   };
 
   const component = shallow(<CurrencySelector {...basicProps} />);
