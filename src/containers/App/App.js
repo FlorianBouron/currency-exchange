@@ -64,7 +64,7 @@ class App extends React.Component {
       currencies,
       setCurrencyFrom,
       setCurrencyTo,
-      isNoBalanceErrors,
+      isNoBalanceError,
       errorRate
     } = this.props;
     const { currencyFrom, currencyTo } = currencies;
@@ -105,7 +105,7 @@ class App extends React.Component {
             <Button
               variant="contained"
               color="secondary"
-              disabled={isNoBalanceErrors || !!errorRate}
+              disabled={isNoBalanceError || !!errorRate}
               onClick={this.handleClickExchange}
             >
               Exchange
@@ -121,9 +121,7 @@ export default connect(
   state => ({
     wallets: selectorsWallets.getWallets(state),
     currencies: selectorsCurrencies.getCurrencies(state),
-    isNoBalanceErrors:
-      !!selectorsErrors.getErrors(state).errorBalanceFrom ||
-      !!selectorsErrors.getErrors(state).errorBalanceTo,
+    isNoBalanceError: !!selectorsErrors.getErrors(state).errorBalanceFrom,
     rates: selectorsRates.getRates(state),
     errorRate: selectorsRates.getError(state)
   }),

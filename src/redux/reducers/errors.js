@@ -1,11 +1,7 @@
-import {
-  SET_ERROR_BALANCE_FROM,
-  SET_ERROR_BALANCE_TO
-} from "../actions/errors";
+import { SET_ERROR_BALANCE_FROM } from "../actions/errors";
 
 const initialState = {
-  errorBalanceFrom: "",
-  errorBalanceTo: ""
+  errorBalanceFrom: ""
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -14,11 +10,6 @@ export default function reducer(state = initialState, action = {}) {
       const { data } = action;
       const { error } = data;
       return Object.assign({}, state, { errorBalanceFrom: error });
-    }
-    case SET_ERROR_BALANCE_TO: {
-      const { data } = action;
-      const { error } = data;
-      return Object.assign({}, state, { errorBalanceTo: error });
     }
     default:
       return state;
