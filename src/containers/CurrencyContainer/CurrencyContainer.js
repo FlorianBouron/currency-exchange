@@ -79,6 +79,7 @@ class CurrencyContainer extends React.PureComponent {
             wallets={wallets}
             onChange={onChangeCurrency}
             fetchRates={fetchRates}
+            isReadOnly={isReadOnly}
           />
           <NumberFormat
             value={inputValue}

@@ -7,11 +7,12 @@ export default function reducer(state = initialState, action = {}) {
     case FETCH_RATES: {
       const { data } = action;
       const { base, rates } = data;
-      return Object.assign({}, state, { base, rates, error: "" });
+      rates[base] = 1;
+      return { ...state, base, rates, error: "" };
     }
     case FETCH_RATES_ERROR: {
       const { data } = action;
-      return Object.assign({}, state, { error: data });
+      return { ...state, error: data };
     }
     default:
       return state;
