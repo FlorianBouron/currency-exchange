@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import TextField from "@material-ui/core/TextField";
+import NumberFormat from "react-number-format";
 import { selectors } from "../../redux/selectors/wallets";
 import {
   setErrorBalanceFrom,
@@ -16,7 +16,7 @@ import { errorLimit } from "../../constants/text";
 import styles from "./CurrencyContainer.module.scss";
 
 class CurrencyContainer extends React.PureComponent {
-  setErrorMesages = message => {
+  setErrorMessages = message => {
     const { isReadOnly } = this.props;
     if (isReadOnly) {
       const { setErrorBalanceTo } = this.props;
@@ -27,17 +27,15 @@ class CurrencyContainer extends React.PureComponent {
     }
   };
 
-  handleChange = ({ target }) => {
+  handleChange = ({ value }) => {
     const { amount, isReadOnly, setInputValue, rate } = this.props;
-    const { value } = target;
-    let inputValue = value;
 
-    if (Math.abs(value) > amount) {
-      this.setErrorMesages(errorLimit);
+    if (value > amount) {
+      this.setErrorMessages(errorLimit);
     } else {
-      this.setErrorMesages("");
+      this.setErrorMessages("");
     }
-    setInputValue(Number(isReadOnly), inputValue, rate);
+    setInputValue(Number(isReadOnly), value, rate);
   };
 
   handleAllowedCharacters = event => {
@@ -76,8 +74,8 @@ class CurrencyContainer extends React.PureComponent {
     } = this.props;
 
     // Check if input > balance
-    if (Math.abs(inputValue) > amount) {
-      this.setErrorMesages(errorLimit);
+    if (inputValue > amount) {
+      this.setErrorMessages(errorLimit);
     }
 
     return (
@@ -88,17 +86,14 @@ class CurrencyContainer extends React.PureComponent {
             wallets={wallets}
             onChange={onChangeCurrency}
           />
-          <TextField
+          <NumberFormat
             value={inputValue}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
             onKeyPress={this.handleAllowedCharacters}
-            type="text"
-            placeholder="0"
+            thousandSeparator
             className={styles["currency__text-field"]}
-            InputLabelProps={{
-              shrink: true
-            }}
-            margin="normal"
+            prefix={"$"}
+            placeholder="0"
           />
         </div>
         <div className={styles["currency__info"]}>
