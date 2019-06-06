@@ -1,3 +1,1 @@
-export const selectors = {
-  getErrors: state => state.errors
-};
+export const getErrors = state => state.errors;

@@ -8,12 +8,12 @@ import {
   setCurrencyFrom,
   setCurrencyTo
 } from "../../redux/actions/currencies";
-import { selectors as selectorsCurrencies } from "../../redux/selectors/currencies";
+import { getCurrencies } from "../../redux/selectors/currencies";
 import { fetchRates } from "../../redux/actions/rates";
-import { selectors as selectorsRates } from "../../redux/selectors/rates";
+import { getRates, getRateError } from "../../redux/selectors/rates";
 import { exchangeCurrency } from "../../redux/actions/wallets";
-import { selectors as selectorsWallets } from "../../redux/selectors/wallets";
-import { selectors as selectorsErrors } from "../../redux/selectors/errors";
+import { getWallets } from "../../redux/selectors/wallets";
+import { getErrors } from "../../redux/selectors/errors";
 import CurrentRate from "../../components/CurrentRate";
 import SwitchButton from "../../components/SwitchButton";
 import CurrencyContainer from "../CurrencyContainer";
@@ -118,11 +118,11 @@ class App extends React.Component {
 
 export default connect(
   state => ({
-    wallets: selectorsWallets.getWallets(state),
-    currencies: selectorsCurrencies.getCurrencies(state),
-    isNoBalanceError: !!selectorsErrors.getErrors(state).errorBalanceFrom,
-    rates: selectorsRates.getRates(state),
-    errorRate: selectorsRates.getError(state)
+    wallets: getWallets(state),
+    currencies: getCurrencies(state),
+    isNoBalanceError: !!getErrors(state).errorBalanceFrom,
+    rates: getRates(state),
+    errorRate: getRateError(state)
   }),
   {
     fetchRates,

@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import NumberFormat from "react-number-format";
 import classNames from "classnames";
-import { selectors } from "../../redux/selectors/wallets";
+import { getWalletByName } from "../../redux/selectors/wallets";
 import { setErrorBalanceFrom } from "../../redux/actions/errors";
-import { selectors as selectorsErrors } from "../../redux/selectors/errors";
+import { getErrors } from "../../redux/selectors/errors";
 import { setInputValue } from "../../redux/actions/currencies";
-import { selectors as selectorsCurrencies } from "../../redux/selectors/currencies";
+import { getCurrencyInputValueByIndex } from "../../redux/selectors/currencies";
 import { fetchRates } from "../../redux/actions/rates";
-import { selectors as selectorsRates } from "../../redux/selectors/rates";
+import { getRateByName } from "../../redux/selectors/rates";
 import CurrencySelector from "../../components/CurrencySelector";
 import { errorLimit } from "../../constants/text";
 import styles from "./CurrencyContainer.module.scss";
@@ -130,16 +130,11 @@ CurrencyContainer.defaultProps = {
 
 export default connect(
   (state, props) => ({
-    amount: selectors.getWalletByName(state, props.currentCurrency).amount,
-    symbol: selectors.getWalletByName(state, props.currentCurrency).symbol,
-    error: props.isReadOnly
-      ? null
-      : selectorsErrors.getErrors(state).errorBalanceFrom,
-    inputValue: selectorsCurrencies.getInputValueByIndex(
-      state,
-      props.isReadOnly ? 1 : 0
-    ),
-    rate: selectorsRates.getRateByName(state, props.currencyRate)
+    amount: getWalletByName(state, props.currentCurrency).amount,
+    symbol: getWalletByName(state, props.currentCurrency).symbol,
+    error: props.isReadOnly ? null : getErrors(state).errorBalanceFrom,
+    inputValue: getCurrencyInputValueByIndex(state, props.isReadOnly ? 1 : 0),
+    rate: getRateByName(state, props.currencyRate)
   }),
   { setErrorBalanceFrom, setInputValue, fetchRates }
 )(CurrencyContainer);

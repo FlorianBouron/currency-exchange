@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TrendingUp from "@material-ui/icons/TrendingUp";
 import classNames from "classnames";
-import { selectors } from "../../redux/selectors/rates";
+import { getRateByName } from "../../redux/selectors/rates";
 import styles from "./CurrentRate.module.scss";
 
 const CurrentRate = ({ currencyFrom, currencyTo, className, rate }) => (
@@ -34,5 +34,5 @@ CurrentRate.defaultProps = {
 };
 
 export default connect((state, props) => ({
-  rate: selectors.getRateByName(state, props.currencyTo.name)
+  rate: getRateByName(state, props.currencyTo.name)
 }))(CurrentRate);
