@@ -21,16 +21,16 @@ import config from "../../config";
 import styles from "./App.module.scss";
 
 class App extends React.Component {
-  currencyToFetch = config.defaultCurrencies.from.name;
-
   componentDidMount() {
     const { fetchRates } = this.props;
     const { exchangeratesapi } = config;
     const { frequencyFetching } = exchangeratesapi;
 
-    fetchRates(this.currencyToFetch);
+    fetchRates(config.defaultCurrencies.from.name);
     this.interval = setInterval(() => {
-      fetchRates(this.currencyToFetch);
+      const { currencies } = this.props;
+      const { currencyFrom } = currencies;
+      fetchRates(currencyFrom.name);
     }, frequencyFetching);
   }
 
@@ -53,9 +53,8 @@ class App extends React.Component {
   handleClickSwitch = () => {
     const { setCurrencies, currencies, fetchRates } = this.props;
     const { currencyFrom, currencyTo } = currencies;
-    this.currencyToFetch = currencyTo.name;
     setCurrencies(currencyTo, currencyFrom);
-    fetchRates(this.currencyToFetch);
+    fetchRates(currencyTo.name);
   };
 
   render() {
