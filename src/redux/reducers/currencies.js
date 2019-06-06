@@ -88,24 +88,38 @@ export default function reducer(state = initialState, action = {}) {
       ][0];
       const connectedObject = state[connectedKeyName];
       if (Number(inputValue) === 0) {
-        currencyObject.inputValue = "0";
-        connectedObject.inputValue = "0";
+        return {
+          ...state,
+          [currencyKeyName]: { ...currencyObject, inputValue: "0" },
+          [connectedKeyName]: { ...connectedObject, inputValue: "0" }
+        };
       } else if (inputValue !== "") {
-        currencyObject.inputValue = inputValue;
         if (indexCurrency === 0) {
-          connectedObject.inputValue = Math.abs(inputValue * rate).toFixed(2);
+          return {
+            ...state,
+            [currencyKeyName]: { ...currencyObject, inputValue },
+            [connectedKeyName]: {
+              ...connectedObject,
+              inputValue: Math.abs(inputValue * rate).toFixed(2)
+            }
+          };
         } else {
-          connectedObject.inputValue = Math.abs(inputValue / rate).toFixed(2);
+          return {
+            ...state,
+            [currencyKeyName]: { ...currencyObject, inputValue },
+            [connectedKeyName]: {
+              ...connectedObject,
+              inputValue: Math.abs(inputValue / rate).toFixed(2)
+            }
+          };
         }
       } else {
-        currencyObject.inputValue = "";
-        connectedObject.inputValue = "";
+        return {
+          ...state,
+          [currencyKeyName]: { ...currencyObject, inputValue: "" },
+          [connectedKeyName]: { ...connectedObject, inputValue: "" }
+        };
       }
-      return {
-        ...state,
-        [currencyKeyName]: currencyObject,
-        [connectedKeyName]: connectedObject
-      };
     }
     default:
       return state;
