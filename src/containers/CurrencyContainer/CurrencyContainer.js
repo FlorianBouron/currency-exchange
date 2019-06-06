@@ -119,7 +119,8 @@ CurrencyContainer.propTypes = {
   currentCurrency: PropTypes.string.isRequired,
   isReadOnly: PropTypes.bool,
   className: PropTypes.string,
-  onChangeCurrency: PropTypes.func.isRequired
+  onChangeCurrency: PropTypes.func.isRequired,
+  currencyRate: PropTypes.string.isRequired
 };
 
 CurrencyContainer.defaultProps = {
