@@ -22,6 +22,21 @@ const initialState = {
   }
 };
 
+function reverseCurrencies(state) {
+  const { currencyFrom, currencyTo } = state;
+  return {
+    ...state,
+    currencyFrom: {
+      name: currencyTo.name,
+      symbol: currencyTo.symbol
+    },
+    currencyTo: {
+      name: currencyFrom.name,
+      symbol: currencyFrom.symbol
+    }
+  };
+}
+
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case SET_CURRENCIES: {
@@ -36,6 +51,9 @@ export default function reducer(state = initialState, action = {}) {
     case SET_CURRENCY_FROM: {
       const { data } = action;
       const { name, symbol } = data;
+      if (name === state.currencyTo.name) {
+        return reverseCurrencies(state);
+      }
       return {
         ...state,
         currencyFrom: {
@@ -48,9 +66,17 @@ export default function reducer(state = initialState, action = {}) {
     case SET_CURRENCY_TO: {
       const { data } = action;
       const { name, symbol } = data;
-      return Object.assign({}, state, {
-        currencyTo: { name, symbol, inputValue: "" }
-      });
+      if (name === state.currencyFrom.name) {
+        return reverseCurrencies(state);
+      }
+      return {
+        ...state,
+        currencyTo: {
+          name,
+          symbol,
+          inputValue: ""
+        }
+      };
     }
     case SET_INPUT_VALUE: {
       const { data } = action;
