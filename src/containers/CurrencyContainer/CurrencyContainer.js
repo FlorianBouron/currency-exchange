@@ -16,8 +16,9 @@ import styles from "./CurrencyContainer.module.scss";
 class CurrencyContainer extends React.PureComponent {
   handleChange = ({ value }) => {
     const { isReadOnly, setInputValue, rate } = this.props;
+    value = Number(value);
 
-    if (isReadOnly) {
+    if (!isReadOnly) {
       const { amount, setErrorBalanceFrom } = this.props;
       if (value > amount) {
         setErrorBalanceFrom(errorLimit);
