@@ -2,11 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TrendingUp from "@material-ui/icons/TrendingUp";
+import classNames from "classnames";
 import { selectors } from "../../redux/selectors/rates";
 import styles from "./CurrentRate.module.scss";
 
 const CurrentRate = ({ currencyFrom, currencyTo, className, rate }) => (
-  <div className={[styles["current-rate-container"], className].join(" ")}>
+  <div
+    className={classNames(className, {
+      [styles["current-rate-container"]]: true
+    })}
+  >
     <TrendingUp className={styles["current-rate__icon"]} />
     {`1${currencyFrom.symbol} = ${rate}${currencyTo.symbol}`}
   </div>

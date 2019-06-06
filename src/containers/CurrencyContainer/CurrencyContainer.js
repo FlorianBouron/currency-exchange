@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import NumberFormat from "react-number-format";
+import classNames from "classnames";
 import { selectors } from "../../redux/selectors/wallets";
 import { setErrorBalanceFrom } from "../../redux/actions/errors";
 import { selectors as selectorsErrors } from "../../redux/selectors/errors";
@@ -73,7 +74,11 @@ class CurrencyContainer extends React.PureComponent {
     }
 
     return (
-      <div className={[styles["currency-container"], className].join(" ")}>
+      <div
+        className={classNames(className, {
+          [styles["currency-container"]]: true
+        })}
+      >
         <div className={styles["currency__input-selector"]}>
           <CurrencySelector
             currentCurrency={currentCurrency}
