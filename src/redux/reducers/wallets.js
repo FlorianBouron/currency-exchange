@@ -6,7 +6,7 @@ import {
   EUR_SYMBOL,
   USD_SYMBOL
 } from "../../constants/currencies";
-import { SET_AMOUNT, EXCHANGE_CURRENCY } from "../actions/wallets";
+import { EXCHANGE_CURRENCY } from "../actions/wallets";
 
 const initialState = {
   data: [
@@ -33,16 +33,6 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case SET_AMOUNT: {
-      const { data } = action;
-      const { walletId, amount } = data;
-      const walletToUpdate = state.data.filter(
-        wallet => wallet.id === walletId
-      )[0];
-      walletToUpdate.amount = amount;
-      const dataToUpdate = [...data, [walletToUpdate]];
-      return { ...state, data: dataToUpdate };
-    }
     case EXCHANGE_CURRENCY: {
       const { data } = action;
       const { wallets } = data;

@@ -1,4 +1,3 @@
-export const SET_AMOUNT = "wallets/SET_AMOUNT";
 export const EXCHANGE_CURRENCY = "wallets/EXCHANGE_CURRENCY";
 
 export const exchangeCurrency = (
@@ -26,18 +25,6 @@ export const exchangeCurrency = (
       type: EXCHANGE_CURRENCY,
       data: {
         wallets
-      }
-    });
-  };
-};
-
-export const setAmount = (walletId, amount) => {
-  return dispatch => {
-    dispatch({
-      type: SET_AMOUNT,
-      data: {
-        walletId,
-        amount
       }
     });
   };
