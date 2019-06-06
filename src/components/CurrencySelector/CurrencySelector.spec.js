@@ -76,6 +76,23 @@ describe("CurrencySelector component", () => {
     expect(component.state("anchorEl")).toBe(null);
   });
 
+  it("fire the event onClick on MenuItem component", () => {
+    let onChangeCalled = false;
+    const customProps = {
+      ...basicProps,
+      onChange: () => {
+        onChangeCalled = true;
+      }
+    };
+    const component = shallow(<CurrencySelector {...customProps} />);
+    expect(onChangeCalled).toBe(false);
+    component
+      .find(MenuItem)
+      .first()
+      .simulate("click", fakeClickEvent);
+    expect(onChangeCalled).toBe(true);
+  });
+
   it("has working component with no wallets", () => {
     const customProps = { ...basicProps, wallets: [] };
     const component = shallow(<CurrencySelector {...customProps} />);
