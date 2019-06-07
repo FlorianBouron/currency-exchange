@@ -156,7 +156,7 @@ describe("CurrencyContainer component", () => {
     component
       .find(NumberFormat)
       .first()
-      .prop("onValueChange")(customEvent);
+      .simulate("change", customEvent);
     expect(component).toBeDefined();
   });
 
@@ -168,7 +168,7 @@ describe("CurrencyContainer component", () => {
     component
       .find(NumberFormat)
       .first()
-      .prop("onValueChange")(customEvent);
+      .simulate("change", customEvent);
     expect(component).toBeDefined();
   });
 

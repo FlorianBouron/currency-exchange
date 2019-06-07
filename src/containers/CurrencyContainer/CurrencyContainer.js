@@ -29,7 +29,6 @@ class CurrencyContainer extends React.PureComponent {
   handleChange = ({ target }) => {
     const { isReadOnly, setInputValue, rate } = this.props;
     const value = Number(target.value.replace(",", ""));
-    this.handleError({ floatValue: value });
     setInputValue(Number(isReadOnly), value, rate);
   };
 
