@@ -93,7 +93,6 @@ class CurrencyContainer extends React.PureComponent {
             onKeyPress={this.handleAllowedCharacters}
             thousandSeparator
             className={styles["currency__text-field"]}
-            prefix={"$"}
             placeholder="0"
           />
         </div>
