@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrencyContainer component expects component to never be changed 1`] = `
+<ContextProvider
+  value={null}
+>
+  <CurrencyContainer
+    amount={85}
+    className="App_app__currency-container-read-only__2LQBE"
+    currencyRate="EUR"
+    currentCurrency="EUR"
+    error=""
+    fetchRates={[Function]}
+    inputValue=""
+    isReadOnly={false}
+    onChangeCurrency={[MockFunction]}
+    rate={1.1292034599}
+    setErrorBalanceFrom={[Function]}
+    setInputValue={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    symbol="€"
+    wallets={
+      Array [
+        Object {
+          "amount": 200,
+          "id": "wallet-id-0",
+          "name": "GBP",
+          "symbol": "£",
+        },
+        Object {
+          "amount": 85,
+          "id": "wallet-id-1",
+          "name": "EUR",
+          "symbol": "€",
+        },
+        Object {
+          "amount": 1000,
+          "id": "wallet-id-2",
+          "name": "USD",
+          "symbol": "$",
+        },
+      ]
+    }
+  />
+</ContextProvider>
+`;
+
+exports[`CurrencyContainer component expects component to never be changed with isReadOnly 1`] = `
+<ContextProvider
+  value={null}
+>
+  <CurrencyContainer
+    amount={85}
+    className="App_app__currency-container-read-only__2LQBE"
+    currencyRate="EUR"
+    currentCurrency="EUR"
+    error={null}
+    fetchRates={[Function]}
+    inputValue=""
+    isReadOnly={true}
+    onChangeCurrency={[MockFunction]}
+    rate={1.1292034599}
+    setErrorBalanceFrom={[Function]}
+    setInputValue={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    symbol="€"
+    wallets={
+      Array [
+        Object {
+          "amount": 200,
+          "id": "wallet-id-0",
+          "name": "GBP",
+          "symbol": "£",
+        },
+        Object {
+          "amount": 85,
+          "id": "wallet-id-1",
+          "name": "EUR",
+          "symbol": "€",
+        },
+        Object {
+          "amount": 1000,
+          "id": "wallet-id-2",
+          "name": "USD",
+          "symbol": "$",
+        },
+      ]
+    }
+  />
+</ContextProvider>
+`;
