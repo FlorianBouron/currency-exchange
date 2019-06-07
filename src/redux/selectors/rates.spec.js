@@ -7,7 +7,9 @@ test("selector getRates return the expected result", () => {
 
 test("selector getRateByName return the expected result", () => {
   const currency = "USD";
-  expect(getRateByName(store, currency)).toBe(store.rates.rates[currency]);
+  expect(getRateByName(store, currency)).toBe(
+    store.rates.rates[currency].toFixed(3)
+  );
 });
 
 test("selector getRateBase return the expected result", () => {

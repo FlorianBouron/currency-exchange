@@ -14,7 +14,7 @@ exports[`CurrencyContainer component expects component to never be changed 1`] =
     inputValue=""
     isReadOnly={false}
     onChangeCurrency={[MockFunction]}
-    rate={1.1292034599}
+    rate="1.129"
     setErrorBalanceFrom={[Function]}
     setInputValue={[Function]}
     store={
@@ -68,7 +68,7 @@ exports[`CurrencyContainer component expects component to never be changed with 
     inputValue=""
     isReadOnly={true}
     onChangeCurrency={[MockFunction]}
-    rate={1.1292034599}
+    rate="1.129"
     setErrorBalanceFrom={[Function]}
     setInputValue={[Function]}
     store={

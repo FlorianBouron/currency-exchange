@@ -56,11 +56,16 @@ export default function reducer(state = initialState, action = {}) {
       if (name === state.currencyTo.name) {
         return reverseCurrencies(state);
       }
+      const { currencyTo } = state;
       return {
         ...state,
         currencyFrom: {
           name,
           symbol,
+          inputValue: ""
+        },
+        currencyTo: {
+          ...currencyTo,
           inputValue: ""
         }
       };
@@ -71,11 +76,16 @@ export default function reducer(state = initialState, action = {}) {
       if (name === state.currencyFrom.name) {
         return reverseCurrencies(state);
       }
+      const { currencyFrom } = state;
       return {
         ...state,
         currencyTo: {
           name,
           symbol,
+          inputValue: ""
+        },
+        currencyFrom: {
+          ...currencyFrom,
           inputValue: ""
         }
       };
