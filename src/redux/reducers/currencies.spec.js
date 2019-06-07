@@ -32,13 +32,13 @@ describe("Currencies reducer", () => {
       reducer(undefined, {
         type: SET_CURRENCIES,
         data: {
-          currencyFrom: { name: "GBP", symbol: "£", inputValue: "0" },
-          currencyTo: { name: "EUR", symbol: "€", inputValue: "0" }
+          currencyFrom: { name: "GBP", symbol: "£", inputValue: 0 },
+          currencyTo: { name: "EUR", symbol: "€", inputValue: 0 }
         }
       })
     ).toEqual({
-      currencyFrom: { name: "GBP", symbol: "£", inputValue: "0" },
-      currencyTo: { name: "EUR", symbol: "€", inputValue: "0" }
+      currencyFrom: { name: "GBP", symbol: "£", inputValue: 0 },
+      currencyTo: { name: "EUR", symbol: "€", inputValue: 0 }
     });
   });
 
@@ -105,7 +105,7 @@ describe("Currencies reducer", () => {
         data: { indexCurrency: 1, inputValue: 1.13, rate: 1.1292034599 }
       })
     ).toEqual({
-      currencyFrom: { name: "GBP", symbol: "£", inputValue: "1.00" },
+      currencyFrom: { name: "GBP", symbol: "£", inputValue: 1 },
       currencyTo: { name: "EUR", symbol: "€", inputValue: 1.13 }
     });
 
@@ -115,8 +115,8 @@ describe("Currencies reducer", () => {
         data: { indexCurrency: 1, inputValue: 0, rate: 1.1292034599 }
       })
     ).toEqual({
-      currencyFrom: { name: "GBP", symbol: "£", inputValue: "0" },
-      currencyTo: { name: "EUR", symbol: "€", inputValue: "0" }
+      currencyFrom: { name: "GBP", symbol: "£", inputValue: 0 },
+      currencyTo: { name: "EUR", symbol: "€", inputValue: 0 }
     });
 
     expect(
@@ -126,7 +126,7 @@ describe("Currencies reducer", () => {
       })
     ).toEqual({
       currencyFrom: { name: "GBP", symbol: "£", inputValue: 1.13 },
-      currencyTo: { name: "EUR", symbol: "€", inputValue: "1.28" }
+      currencyTo: { name: "EUR", symbol: "€", inputValue: 1.28 }
     });
 
     expect(
@@ -135,8 +135,8 @@ describe("Currencies reducer", () => {
         data: { indexCurrency: 0, inputValue: "", rate: 1.1292034599 }
       })
     ).toEqual({
-      currencyFrom: { name: "GBP", symbol: "£", inputValue: "0" },
-      currencyTo: { name: "EUR", symbol: "€", inputValue: "0" }
+      currencyFrom: { name: "GBP", symbol: "£", inputValue: 0 },
+      currencyTo: { name: "EUR", symbol: "€", inputValue: 0 }
     });
   });
 });

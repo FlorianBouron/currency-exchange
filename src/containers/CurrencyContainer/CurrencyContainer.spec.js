@@ -131,23 +131,6 @@ describe("CurrencyContainer component", () => {
     expect(preventDefaultHasBeenCalled).toBe(true);
   });
 
-  it("expects to call setErrorBalanceFrom and prevent to have more than two digits after comma", () => {
-    let preventDefaultHasBeenCalled = false;
-    const customEvent = {
-      charCode: 49,
-      target: {
-        value: "200.22"
-      },
-      preventDefault: () => (preventDefaultHasBeenCalled = true)
-    };
-    const component = mount(<CurrencyContainer {...basicProps} />);
-    component
-      .find(NumberFormat)
-      .first()
-      .simulate("keypress", customEvent);
-    expect(preventDefaultHasBeenCalled).toBe(true);
-  });
-
   it("expects to call handleChange and call setErrorBalanceFrom and add error to redux", () => {
     const customEvent = {
       value: 99999

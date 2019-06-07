@@ -92,8 +92,8 @@ export default function reducer(state = initialState, action = {}) {
       if (Number(inputValue) === 0) {
         return {
           ...state,
-          [currencyKeyName]: { ...currencyObject, inputValue: "0" },
-          [connectedKeyName]: { ...connectedObject, inputValue: "0" }
+          [currencyKeyName]: { ...currencyObject, inputValue: 0 },
+          [connectedKeyName]: { ...connectedObject, inputValue: 0 }
         };
       } else if (inputValue !== "") {
         if (indexCurrency === 0) {
@@ -102,7 +102,7 @@ export default function reducer(state = initialState, action = {}) {
             [currencyKeyName]: { ...currencyObject, inputValue },
             [connectedKeyName]: {
               ...connectedObject,
-              inputValue: Math.abs(inputValue * rate).toFixed(2)
+              inputValue: Number(Math.abs(inputValue * rate).toFixed(2))
             }
           };
         } else {
@@ -111,7 +111,7 @@ export default function reducer(state = initialState, action = {}) {
             [currencyKeyName]: { ...currencyObject, inputValue },
             [connectedKeyName]: {
               ...connectedObject,
-              inputValue: Math.abs(inputValue / rate).toFixed(2)
+              inputValue: Number(Math.abs(inputValue / rate).toFixed(2))
             }
           };
         }
