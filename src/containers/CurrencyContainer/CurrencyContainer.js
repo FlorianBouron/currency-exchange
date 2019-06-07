@@ -15,9 +15,9 @@ import { errorLimit } from "../../constants/text";
 import styles from "./CurrencyContainer.module.scss";
 
 class CurrencyContainer extends React.PureComponent {
-  handleChange = ({ value }) => {
+  handleChange = ({ target }) => {
     const { isReadOnly, setInputValue, rate } = this.props;
-    value = Number(value);
+    const value = Number(target.value.replace(",", ""));
 
     if (!isReadOnly) {
       const { amount, setErrorBalanceFrom } = this.props;
@@ -89,7 +89,7 @@ class CurrencyContainer extends React.PureComponent {
           />
           <NumberFormat
             value={inputValue}
-            onValueChange={this.handleChange}
+            onChange={this.handleChange}
             onKeyPress={this.handleAllowedCharacters}
             thousandSeparator
             className={styles["currency__text-field"]}

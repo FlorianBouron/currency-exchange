@@ -28,11 +28,13 @@ function reverseCurrencies(state) {
     ...state,
     currencyFrom: {
       name: currencyTo.name,
-      symbol: currencyTo.symbol
+      symbol: currencyTo.symbol,
+      inputValue: currencyTo.inputValue
     },
     currencyTo: {
       name: currencyFrom.name,
-      symbol: currencyFrom.symbol
+      symbol: currencyFrom.symbol,
+      inputValue: currencyFrom.inputValue
     }
   };
 }
@@ -125,14 +127,3 @@ export default function reducer(state = initialState, action = {}) {
       return state;
   }
 }
-
-export const selectors = {
-  getCurrencies: state => state.currencies,
-  getCurrencyFrom: state => state.currencies.currencyFrom,
-  getCurrencyTo: state => state.currencies.currencyTo,
-  getInputValueByIndex: (state, indexCurrency) =>
-    [Object.keys(state.currencies)[indexCurrency]][0]
-      ? state.currencies[[Object.keys(state.currencies)[indexCurrency]][0]]
-          .inputValue
-      : ""
-};
