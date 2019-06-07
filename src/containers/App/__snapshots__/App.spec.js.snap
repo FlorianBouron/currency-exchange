@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component expects component to never be changed 1`] = `
+<ContextProvider
+  value={null}
+>
+  <App
+    currencies={
+      Object {
+        "currencyFrom": Object {
+          "inputValue": "",
+          "name": "GBP",
+          "symbol": "£",
+        },
+        "currencyTo": Object {
+          "inputValue": "",
+          "name": "EUR",
+          "symbol": "€",
+        },
+      }
+    }
+    errorRate=""
+    exchangeCurrency={[Function]}
+    fetchRates={[Function]}
+    isNoBalanceError={false}
+    rates={
+      Object {
+        "EUR": 1.1292034599,
+        "GBP": 1,
+        "USD": 1.2721606179,
+      }
+    }
+    setCurrencies={[Function]}
+    setCurrencyFrom={[Function]}
+    setCurrencyTo={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    wallets={
+      Array [
+        Object {
+          "amount": 200,
+          "id": "wallet-id-0",
+          "name": "GBP",
+          "symbol": "£",
+        },
+        Object {
+          "amount": 85,
+          "id": "wallet-id-1",
+          "name": "EUR",
+          "symbol": "€",
+        },
+        Object {
+          "amount": 1000,
+          "id": "wallet-id-2",
+          "name": "USD",
+          "symbol": "$",
+        },
+      ]
+    }
+  />
+</ContextProvider>
+`;
