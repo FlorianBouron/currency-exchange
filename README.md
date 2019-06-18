@@ -1,7 +1,7 @@
 # Currency Exchange
 
 ## Project architecture
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<b>
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Other dependencies used:
 * redux
