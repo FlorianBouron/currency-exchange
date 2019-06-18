@@ -33,18 +33,13 @@ class CurrencyContainer extends React.PureComponent {
   };
 
   handleAllowedCharacters = event => {
-    /*
-      Table of Values:
-      46: .
-      48: 0
-      57: 9
-    */
-    if ((event.charCode < 48 || event.charCode > 57) && event.charCode !== 46) {
+    const { key: keyEvent } = event;
+    if ((keyEvent < "0" || keyEvent > "9") && keyEvent !== ".") {
       event.preventDefault();
     }
 
     //Prevent to have two dots
-    if (event.target.value.indexOf(".") !== -1 && event.charCode === 46) {
+    if (event.target.value.indexOf(".") !== -1 && keyEvent === ".") {
       event.preventDefault();
     }
   };

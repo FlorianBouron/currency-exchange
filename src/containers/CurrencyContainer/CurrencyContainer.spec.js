@@ -103,7 +103,7 @@ describe("CurrencyContainer component", () => {
   it("expects to call setErrorBalanceFrom and prevent not allowed character", () => {
     let preventDefaultHasBeenCalled = false;
     const customEvent = {
-      charCode: 23,
+      key: "a",
       preventDefault: () => (preventDefaultHasBeenCalled = true)
     };
     const component = mount(<CurrencyContainer {...basicProps} />);
@@ -117,7 +117,7 @@ describe("CurrencyContainer component", () => {
   it("expects to call setErrorBalanceFrom and prevent two dots", () => {
     let preventDefaultHasBeenCalled = false;
     const customEvent = {
-      charCode: 46,
+      key: ".",
       target: {
         value: "200.22"
       },
