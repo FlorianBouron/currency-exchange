@@ -1,3 +1,4 @@
+import currency from "currency.js";
 import config from "../../config";
 import {
   SET_CURRENCIES,
@@ -112,7 +113,7 @@ export default function reducer(state = initialState, action = {}) {
             [currencyKeyName]: { ...currencyObject, inputValue },
             [connectedKeyName]: {
               ...connectedObject,
-              inputValue: Number(Math.abs(inputValue * rate).toFixed(2))
+              inputValue: currency(inputValue).multiply(rate).value
             }
           };
         } else {
@@ -121,7 +122,7 @@ export default function reducer(state = initialState, action = {}) {
             [currencyKeyName]: { ...currencyObject, inputValue },
             [connectedKeyName]: {
               ...connectedObject,
-              inputValue: Number(Math.abs(inputValue / rate).toFixed(2))
+              inputValue: currency(inputValue).divide(rate).value
             }
           };
         }

@@ -12,6 +12,7 @@ Other dependencies used:
 * prop-types
 * material-ui
 * react-number-format
+* currency.js
 
 Dependencies for tests:
 * jest

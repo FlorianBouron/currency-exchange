@@ -1,3 +1,5 @@
+import currency from "currency.js";
+
 export const EXCHANGE_CURRENCY = "wallets/EXCHANGE_CURRENCY";
 
 export const exchangeCurrency = (
@@ -14,12 +16,12 @@ export const exchangeCurrency = (
   const indexWalletFrom = wallets.findIndex(
     wallet => wallet.name === walletNameFrom
   );
-  wallets[indexWalletTo].amount = Number(
-    (wallets[indexWalletTo].amount + amountTo).toFixed(2)
+  wallets[indexWalletTo].amount = currency(wallets[indexWalletTo].amount).add(
+    amountTo
   );
-  wallets[indexWalletFrom].amount = Number(
-    (wallets[indexWalletFrom].amount - valueToConvert).toFixed(2)
-  );
+  wallets[indexWalletFrom].amount = currency(
+    wallets[indexWalletFrom].amount
+  ).subtract(valueToConvert);
   return dispatch => {
     dispatch({
       type: EXCHANGE_CURRENCY,

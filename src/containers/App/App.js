@@ -45,7 +45,7 @@ class App extends React.Component {
       wallets,
       currencyFrom.name,
       currencyTo.name,
-      Math.abs(currencies.currencyFrom.inputValue),
+      currencies.currencyFrom.inputValue,
       rates[currencyTo.name]
     );
   };
